@@ -1,5 +1,10 @@
 # fsi-Workshops
 
+## PDF index
+
+Die Folien können mit dem Webbrowser
+[hier](https://fsi-tue.github.io/workshops/) betrachtet werden.
+
 ## Ordnerstruktur
 
 ### src
