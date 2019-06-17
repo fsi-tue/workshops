@@ -97,6 +97,9 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 ---
 
 ## Und wer seid ihr? (10/10)
+
+<div style="font-size:90%">
+
 - Microsoft
 - cmd
 - Android
@@ -108,9 +111,14 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 - zsh
 - Compilerflag
 
+</div>
+
 ---
 
 ## Und wer seid ihr? (11/10)
+
+<div style="font-size:85%">
+
 - Microsoft
 - cmd
 - Android
@@ -123,6 +131,7 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 - Compilerflag
 - Off-By-One-Error
 
+</div>
 
 ---
 
@@ -132,6 +141,8 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 ---
 
 ## Was machen wir heute?
+
+<div style="font-size:90%">
 
 - Was ist Linux? Warum nicht Microsoft?
 
@@ -144,6 +155,8 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 - Überblick über verschiedene Distributionen
 
 - Grundlegender Umgang mit dem Terminal
+
+</div>
 
 ---
 
@@ -163,12 +176,13 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 
 - Abhängigkeit von einem Großkonzern
 - Braucht viel Speicherplatz + Windows Updates sind langsam
+- Repositories!
 
 ---
 
 ## E-Mails lesen: Thunderbird
 
-![](https://aozoeky4dglp5sh0-zippykid.netdna-ssl.com/wp-content/uploads/2017/04/thunderbird-redesign-750x563.jpg)
+<img src="https://aozoeky4dglp5sh0-zippykid.netdna-ssl.com/wp-content/uploads/2017/04/thunderbird-redesign-750x563.jpg" width="75%">
 
 ---
 
@@ -186,13 +200,13 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 
 ## Dateimanager: Nautilus ... :D
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nautilus_Palau.JPG/1280px-Nautilus_Palau.JPG" width="80%">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nautilus_Palau.JPG/1280px-Nautilus_Palau.JPG" width="75%">
 
 ---
 
 ## Dateimanager: Nautilus
 
-<img src="https://3.bp.blogspot.com/-Xo3rqYE85CU/UCAMf0bx2gI/AAAAAAAAJdM/Vpl9SonTu7k/s1600/solusos-nautilus-ubuntu_2.png" width="90%">
+<img src="https://3.bp.blogspot.com/-Xo3rqYE85CU/UCAMf0bx2gI/AAAAAAAAJdM/Vpl9SonTu7k/s1600/solusos-nautilus-ubuntu_2.png" width="85%">
 
 ---
 
@@ -210,7 +224,7 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 
 ## Impressionen (3/7)
 
-![](https://aozoeky4dglp5sh0-zippykid.netdna-ssl.com/wp-content/uploads/2017/08/install-budgie-desktop-on-ubuntu.jpg)
+<img src="https://aozoeky4dglp5sh0-zippykid.netdna-ssl.com/wp-content/uploads/2017/08/install-budgie-desktop-on-ubuntu.jpg" width="85%">
 
 ---
 
@@ -228,7 +242,7 @@ https://www.linux-ag.uni-tuebingen.de/presentation/index.xhtml
 
 ## Impressionen (6/7)
 
-<img src="https://cn.opendesktop.org/img//hive/content-pre1/164224-1.png" width="75%">
+<img src="https://cn.opendesktop.org/img//hive/content-pre1/164224-1.png" width="65%">
 
 ---
 
@@ -284,16 +298,23 @@ https://distrochooser.de/
 
 ## Probleme, die Linux lösen kann
 
+<div style="font-size:90%">
+
 - YouTube-Videos können direkt über das Terminal heruntergeladen werden
 - Aktionen von "git" und "ssh" können zentral über das Terminal erfolgen
 - Alle Programme werden über den Paketmanager verwaltet. Es muss nicht jedes Programm einzeln aktualisiert werden.
 - Systemrettung via Live-USB-Stick
 - Automatisierte Tasks
 
+</div>
+
 ---
 
 ## Grundlegende Befehle für das Terminal
 
+<div style="font-size:70%">
+
+- man (**man**ual)
 - cd (**c**hange **d**irectory)
 - mv (**m**o**v**e)
 - rm (**r**e**m**ove)
@@ -305,6 +326,8 @@ https://distrochooser.de/
 - nano
 - apt-get
 - git -> siehe weiterer Workshop
+
+</div>
 
 ---
 
