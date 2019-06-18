@@ -1,0 +1,146 @@
+#+TITLE:     Git II
+#+AUTHOR:    Florian Engel
+#+OPTIONS: toc:nil H:2
+#+OPTIONS: ^:nil
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation, smaller]
+#+BEAMER_THEME: CambridgeUS
+#+BEAMER_FONT_THEME: structurebold
+#+BEAMER_ENV:
+#+BEAMER_HEADER: \frenchspacing
+
+* History durchsuchen
+** Wer hat was verändert
+   #+BEGIN_SRC bash
+> git log --author="Florian Engel"
+   #+END_SRC
+Zeigt alle commits an deren Autor Florian Engel ist
+** Nach bestimmten commit messages suchen
+   #+BEGIN_SRC bash
+     > git log --grep "monetdb"
+   #+END_SRC
+ Zeigt alle commits an in deren message "monetdb" vorkommt
+** Was wurde geändert
+   #+BEGIN_SRC bash
+     > git log --patch
+   #+END_SRC
+   Zeigt zusätzlich zum log die diffs der einzelnen commits an
+** Den log einer Datei anzeigen
+#+BEGIN_SRC bash
+> git log <datei>
+#+END_SRC
++ Zeigt den log von <datei> an
++ kannn mit --patch verbunden werden
+** Dateien vergleichen mit diff
+  #+BEGIN_SRC bash
+    > git diff <commit>
+    > git diff <commit> <commit>
+  #+END_SRC
+  Zeigt die Änderungen zwischen 2 commits an
+** 
+  #+BEGIN_CENTER
+  Demo
+  #+END_CENTER
+* Git commits korrieren
+** Änderen von letztem commit mit amend
+#+BEGIN_EXAMPLE
+> git commit --amend
+#+END_EXAMPLE
+Bearbeitet den letztem commit
+** Beispiel
+#+BEGIN_SRC bash
+> echo "The Room: 5 stars" > movie_rating.txt
+> git add movie_rating.txt
+> git commit -m "Added the room to rating"
+> git commit --amend -m "Add the room to rating"
+> # edit rating to 1 star
+> git add movie_rating.txt
+> git commit --amend --no-edit
+#+END_SRC
+** Ändern von mehrenen commits
+> git rebase --interactive HEAD~<Anzahl commits>
+*** Optionen:
+    + p (pick): der commit soll so bleiben
+    + r (reword): Die commit-message soll verändert werden
+    + e (edit): amend auf diesen commit
+    + s (squash): Der commit und der davor sollen zu einem zusammengeführt werden
+    + f (fixup): Wie s aber ohne die commitmessage
+    + d (drop): commit soll entfernt werden
+* Revision selection
+** Wie funktioniert "^" 
+   #+BEGIN_SRC bash
+   > git log HEAD^
+   > git log HEAD^^
+   > git log HEAD^<n>
+   #+END_SRC
+- Gibt den ersten, zweiten,... Parentcommit aus
+- `HEAD^n' gibt den Parentcommit vom Parentcommit aus
+** Wie funktioniert "~" 
+   #+BEGIN_SRC bash
+   > git log HEAD~
+   > git log HEAD~~
+   > git log HEAD~<n>
+   #+END_SRC
+-  Gibt den ersten, zweiten,... Parentcommit aus
+- `HEAD~n' gibt den 2. Parentcommit aus
+** Was ist der unterschie zwischen "~" und "^" :B_ignoreheading:
+#+ATTR_LATEX: width=\textwidth
+[[./doubleDot.png]]
+- Welchen commit gibt ~git show HEAD~2~
+- Welchen commit gibt ~git show HEAD^2~
+** Wie sehe ich alle commits von topic die noch nicht in master sind
+>  git log master..topic
+** Wie sehe ich alle commits die noch nicht in master sind
+> git log topic ^master
+* Merge-Strategien
+** xours
+#+BEGIN_EXAMPLE
+> git merge -Xours <branch>
+#+END_EXAMPLE
+Wenn ein Konflikt auftritt benutze den aktuellen branch
+** xtheirs
+#+BEGIN_EXAMPLE
+> git merge -Xtheirs <branch>
+#+END_EXAMPLE
+Wenn ein Konflikt auftritt benutze den anderen branch
+** ours
+#+BEGIN_EXAMPLE
+> git merge -s ours <branch>
+#+END_EXAMPLE
+Nimm nur den aktuellen Branch
+** theirs
+#+BEGIN_EXAMPLE
+> git merge -s theirs <branch>
+#+END_EXAMPLE
+* Merge Konflikt auflösen
+** Merge Konflikt auflösen
+  #+BEGIN_CENTER
+  Demo
+  #+END_CENTER
+* Workflow 
+** Workflow :B_ignoreheading:
+#+ATTR_LATEX: width=\textwidth
+   [[./workflow.png]]
++ Bei projekten kommen bestimmte branches häufig vor
++ master,stable,dev und feature branches
+** master 
+#+ATTR_LATEX: width=\textwidth
+   [[./workflow.png]]
++ Das aktuell laufende Projekt
++ Enthält commits die an den Endnutzer weitergegeben werden können
+** stable
+- Alle gut getesteten commits
+- Das Projekt in diesem Branch sollte wenig Bugs haben
+** dev 
+#+ATTR_LATEX: width=\textwidth
+   [[./workflow.png]]
+- Der aktuelle stand des Projekts 
+- Entwickler wollen diesen noch nicht an Endnutzer weiter geben
+- Enthält eventuell noch viele Bugs
+** feature branches
+#+ATTR_LATEX: width=\textwidth
+   [[./workflow.png]]
+- Für jedes Feature einen branch
+- Wenn das Feature fertig ist, wird es in dev gemerged
