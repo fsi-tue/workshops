@@ -1,0 +1,223 @@
+% Created 2019-06-17 Mon 17:57
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation, smaller]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme{CambridgeUS}
+\usefonttheme{structurebold}
+\author{Florian Engel}
+\date{\today}
+\title{Git II}
+\frenchspacing
+\hypersetup{
+ pdfauthor={Florian Engel},
+ pdftitle={Git II},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.14)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section{History durchsuchen}
+\label{sec:orgc740d9b}
+\begin{frame}[fragile,label={sec:org15d1ee5}]{Wer hat was verändert}
+ \begin{verbatim}
+> git log --author="Florian Engel"
+\end{verbatim}
+Zeigt alle commits an deren Autor Florian Engel ist
+\end{frame}
+\begin{frame}[fragile,label={sec:org5e7b411}]{Nach bestimmten commit messages suchen}
+ \begin{verbatim}
+> git log --grep "monetdb"
+\end{verbatim}
+Zeigt alle commits an in deren message "monetdb" vorkommt
+\end{frame}
+\begin{frame}[fragile,label={sec:org8bdc85e}]{Was wurde geändert}
+ \begin{verbatim}
+> git log --patch
+\end{verbatim}
+Zeigt zusätzlich zum log die diffs der einzelnen commits an
+\end{frame}
+\begin{frame}[fragile,label={sec:org61ccedc}]{Den log einer Datei anzeigen}
+ \begin{verbatim}
+> git log <datei>
+\end{verbatim}
+\begin{itemize}
+\item Zeigt den log von <datei> an
+\item kannn mit --patch verbunden werden
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgbc19348}]{Dateien vergleichen mit diff}
+ \begin{verbatim}
+> git diff <commit>
+> git diff <commit> <commit>
+\end{verbatim}
+Zeigt die Änderungen zwischen 2 commits an
+\end{frame}
+\begin{frame}[label={sec:orgbf3491e}]{}
+\begin{center}
+Demo
+\end{center}
+\end{frame}
+\section{Git commits korrieren}
+\label{sec:org7b0ff0e}
+\begin{frame}[fragile,label={sec:org48835f5}]{Änderen von letztem commit mit amend}
+ \begin{verbatim}
+> git commit --amend
+\end{verbatim}
+Bearbeitet den letztem commit
+\end{frame}
+\begin{frame}[fragile,label={sec:org9d722d7}]{Beispiel}
+ \begin{verbatim}
+> echo "The Room: 5 stars" > movie_rating.txt
+> git add movie_rating.txt
+> git commit -m "Added the room to rating"
+> git commit --amend -m "Add the room to rating"
+> # edit rating to 1 star
+> git add movie_rating.txt
+> git commit --amend --no-edit
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:orga9be044}]{Ändern von mehrenen commits}
+> git rebase --interactive HEAD\textasciitilde{}<Anzahl commits>
+\begin{block}{Optionen:}
+\begin{itemize}
+\item p (pick): der commit soll so bleiben
+\item r (reword): Die commit-message soll verändert werden
+\item e (edit): amend auf diesen commit
+\item s (squash): Der commit und der davor sollen zu einem zusammengeführt werden
+\item f (fixup): Wie s aber ohne die commitmessage
+\item d (drop): commit soll entfernt werden
+\end{itemize}
+\end{block}
+\end{frame}
+\section{Revision selection}
+\label{sec:org0d2ee4d}
+\begin{frame}[fragile,label={sec:orgbe9ed73}]{Wie funktioniert "\^{}"}
+ \begin{verbatim}
+> git log HEAD^
+> git log HEAD^^
+> git log HEAD^<n>
+\end{verbatim}
+\begin{itemize}
+\item Gibt den ersten, zweiten,\ldots{} Parentcommit aus
+\item `HEAD\^{}n' gibt den Parentcommit vom Parentcommit aus
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label={sec:orga7b5fed}]{Wie funktioniert "\textasciitilde{}"}
+ \begin{verbatim}
+> git log HEAD~
+> git log HEAD~~
+> git log HEAD~<n>
+\end{verbatim}
+\begin{itemize}
+\item Gibt den ersten, zweiten,\ldots{} Parentcommit aus
+\item `HEAD\textasciitilde{}n' gibt den 2. Parentcommit aus
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label={sec:org5314215}]{Was ist der unterschie zwischen "\textasciitilde{}" und "\^{}"}
+ \begin{center}
+\includegraphics[width=.9\linewidth]{./doubleDot.png}
+\end{center}
+\begin{itemize}
+\item Welchen commit gibt \texttt{git show HEAD\textasciitilde{}2}
+\item Welchen commit gibt \texttt{git show HEAD\textasciicircum{}2}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org22fca15}]{Wie sehe ich alle commits von topic die noch nicht in master sind}
+>  git log master..topic
+\end{frame}
+\begin{frame}[label={sec:orgae633bb}]{Wie sehe ich alle commits die noch nicht in master sind}
+> git log topic \^{}master
+\end{frame}
+\section{Merge-Strategien}
+\label{sec:org88178dc}
+\begin{frame}[fragile,label={sec:org16d3ac9}]{xours}
+ \begin{verbatim}
+> git merge -Xours <branch>
+\end{verbatim}
+Wenn ein Konflikt auftritt benutze den aktuellen branch
+\end{frame}
+\begin{frame}[fragile,label={sec:orgc5d6a56}]{xtheirs}
+ \begin{verbatim}
+> git merge -Xtheirs <branch>
+\end{verbatim}
+Wenn ein Konflikt auftritt benutze den anderen branch
+\end{frame}
+\begin{frame}[fragile,label={sec:orgeb4559f}]{ours}
+ \begin{verbatim}
+> git merge -s ours <branch>
+\end{verbatim}
+Nimm nur den aktuellen Branch
+\end{frame}
+\begin{frame}[fragile,label={sec:org05a193d}]{theirs}
+ \begin{verbatim}
+> git merge -s theirs <branch>
+\end{verbatim}
+\end{frame}
+\section{Merge Konflikt auflösen}
+\label{sec:orgb1f2c5b}
+\begin{frame}[label={sec:org9a6f046}]{Merge Konflikt auflösen}
+\begin{center}
+Demo
+\end{center}
+\end{frame}
+\section{Workflow}
+\label{sec:orge2abcf8}
+\begin{frame}[label={sec:org54e1806}]{Workflow}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./workflow.png}
+\end{center}
+\begin{itemize}
+\item Bei projekten kommen bestimmte branches häufig vor
+\item master,stable,dev und feature branches
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org3bb1150}]{master}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./workflow.png}
+\end{center}
+\begin{itemize}
+\item Das aktuell laufende Projekt
+\item Enthält commits die an den Endnutzer weitergegeben werden können
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga5fc929}]{stable}
+\begin{itemize}
+\item Alle gut getesteten commits
+\item Das Projekt in diesem Branch sollte wenig Bugs haben
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orge20f883}]{dev}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./workflow.png}
+\end{center}
+\begin{itemize}
+\item Der aktuelle stand des Projekts
+\item Entwickler wollen diesen noch nicht an Endnutzer weiter geben
+\item Enthält eventuell noch viele Bugs
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org3bb214a}]{feature branches}
+\begin{center}
+\includegraphics[width=.9\linewidth]{./workflow.png}
+\end{center}
+\begin{itemize}
+\item Für jedes Feature einen branch
+\item Wenn das Feature fertig ist, wird es in dev gemerged
+\end{itemize}
+\end{frame}
+\end{document}
