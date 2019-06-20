@@ -17,6 +17,11 @@ OpenDocument (ODF bzw. `.odp`).
 Folien der Workshops, die in diesem Jahr gehalten wurden. Im PDF-Format (nach
 Möglichkeit) und zusätzlich durchnummeriert um die Reihenfolge zu wahren.
 
+## Neue Folien hinzufügen
+
+Nach dem hinzufügen der neuen Folien gemäß der existierenden Ordnerstruktur kann
+die Datei `index.md` mit dem Befehl `./regen-index.sh` aktualisiert werden.
+
 ## Lizenz
 
 Creative Commons Attribution Share Alike 4.0 International
