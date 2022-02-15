@@ -1,0 +1,44 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath}
+% weitere imports...
+\begin{document}
+	\author{Jules Kreuer}
+	\title{Übungsblatt 0}
+\date{\today{}}
+\maketitle{}
+\newpage
+\section{Erstes Kapitel}
+Das ist das erste Kapitel
+\subsection{Unterkapitel}
+Das ist das erste Unterkapitel
+\subsection*{Unnummeriert}
+
+
+
+Hier kommt eine Liste
+\label{liste}
+\begin{enumerate}[label=\alph*)]
+	\item Erster Punkt
+	\item Zwei
+	\item Unterliste
+	\begin{enumerate}
+		\item Sub 1
+	\end{enumerate}
+	
+\end{enumerate}
+Wie zu sehen in Liste \ref{liste}
+
+\begin{tabular}{|l||l|}
+	Linke Seite & Mitte  \\
+	\hline
+	Bababababa & Noch mehr
+\end{tabular}
+\begin{align}
+12
+\end{align}
+
+\end{document}
