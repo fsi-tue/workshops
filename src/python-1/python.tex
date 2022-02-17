@@ -143,10 +143,9 @@ Uni Tübingen\\ % Your institution for the title page
 	\begin{block}{}<2->
 	\textbf{Part 2: Basics}\\
 	- Common operators\\
-	- Data objects / data types\\
-	- Strings, input, type-casting\\
+	- Data types, type-casting\\
 	- Lists, dicts\\
-	- Control flow: for, while, break
+	- Control flow: for, while, break, continue\\
 	\end{block}
 	\begin{exampleblock}{}<2->
 		Break
@@ -157,6 +156,8 @@ Uni Tübingen\\ % Your institution for the title page
 	\begin{block}{}
 		\textbf{Part 3: Abstraction}\\
 		- Functions, variable scope, lambda\\
+		- Files / IO\\
+		- Exceptions\\
 		- recursion\\
 		- Objects, Classes\\
 	\end{block}
@@ -167,7 +168,7 @@ Uni Tübingen\\ % Your institution for the title page
 		\textbf{Part 4: Development}\\
 		- Arguments\\
 		- Modules / imports\\
-		- V-Envs
+		- Virtual-Envs\\
 		- Tests
 	\end{block}
 \end{frame}
@@ -243,6 +244,257 @@ python3 hello-world.py
 	- Content: \mintinline{python}{print("Hello World")}\\
 	- Run it!
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Part 2
+\begin{frame}[fragile]
+	\frametitle{Basic operators and types}
+	Just like `any other' language.
+	\begin{block}{Math}
+		\begin{minted}{python}
+s = (a + b - c) / d * e
+p = a ** 2 # a to the power of 2
+b = a^2    # bitwise shifting
+m = a%2    # mod
+		\end{minted}
+	\end{block}
+	\begin{exampleblock}{Numeric types}
+	\begin{minted}{python}
+int, float, complex
+i = 1 = int("1") = int(1.0)
+f = 4.2
+c = 4+2j
+	\end{minted}
+\end{exampleblock}
+\end{frame}
+\begin{frame}[fragile]
+	\begin{block}{Strings}
+		\begin{minted}{python}
+s = "Hello " + "World"
+c = "A" * 10 + "HHHH"
+S = s.upper()
+length = len(S)   # Returns Integer
+pos = s.find("W") # Return Integer (Position of first W)
+		\end{minted}
+	\end{block}
+	\begin{exampleblock}{Text types}
+		\begin{minted}{python}
+str
+s = str(1)
+		\end{minted}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{block}{Booleans}
+		\begin{minted}{python}
+a = (True or False) and not False
+		\end{minted}
+	\end{block}
+	\begin{exampleblock}{Boolean types}
+		\begin{minted}{python}
+bool
+t = bool(1) = bool("Not Empty")
+f = bool(0) = bool("")
+		\end{minted}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{block}{Comparision}
+		\begin{minted}{python}
+<, >, ==, !=, <=, >=
+		\end{minted}
+	\end{block}
+	\begin{example}{}
+		\begin{minted}{python}
+t = 3 < 5 
+t = not "A" == "B"
+f = 4.2 == 2
+f = 0 == "Hello" # Comparision in between types is possible
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{01-types.py}
+	\begin{exampleblock}{Exercise}
+	Desired output: `The sum of 41.8 and 0.2 is 42'.\\
+	Use following variables:
+		\begin{minted}{python}
+i = 41.8
+f = 0.2
+prefix = "The sum of "
+		\end{minted}
+	\end{exampleblock}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists / Dicts / Tuples
+\begin{frame}[fragile]
+	\begin{block}{Lists}<1->
+Mutable, dynamic in length, non-homogenous, ordered
+\begin{minted}{python}
+aList = [1, 2, 3, 4, "What?", 6]
+aList[0]             # -> 1
+aList[4:]            # -> ['What?', 6]
+aList[1::2]          # -> [2, 4, 6]  
+aList[-1]            # -> 6
+aList.append(7)      # -> [..., 6, 7]
+aList.extend([8,9])  # -> [..., 6, 7, 8, 9]
+aList[0] = "New Zero"
+general form: [from:to:step/order]
+\end{minted}
+	\end{block}
+	\begin{block}{Tuples}<2->
+	Non-Mutable, fixed length, non-homogenous
+	\begin{minted}{python}
+aTuple = ("A", "a", 1)
+a[0] 	# -> "A"
+	\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	
+	\begin{block}{Dicts}
+	Mutable, dynamic in size, non-homogenous, unordered\footnote{Somehow..}
+	\begin{minted}{python}
+d = {"key": "value", 1: 3}
+d["key"]     # -> "value"
+d["new"] = 2 # Insert new value to d
+d.keys()     # -> ["key", 1, "new"]
+d.values()   # -> ["value, 3, 2]
+d.items()    # -> [("key", "value"), (1, 3), ("new", 2)]
+	\end{minted}
+	\end{block}
+\textbf{See: } \url{https://docs.python.org/3/tutorial/datastructures.html}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If and Loops
+
+\begin{frame}[fragile]
+	\frametitle{Control flow: if, for, while, break, continue}
+	Regular control flow with if:
+	\begin{minted}{python}
+if condition:
+  doThis()
+elif cond2:
+  doThat()
+else:
+  otherWise()
+	\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+Looping has two different approaches:
+\begin{block}{while / condition}<1->
+	\begin{minted}{python}
+i = 0
+while i < 10:
+  print(i)
+  i = i + 1
+	\end{minted}
+\end{block} 
+\begin{block}{for / iterable}<2->
+	\begin{minted}{python}
+for element in iterable:
+  print(e)
+	\end{minted}
+\end{block} 
+\end{frame}
+
+\begin{frame}[fragile]
+Iterables: something with an order and members.
+\begin{example}
+	\begin{minted}{python}
+tuples = (0, 1,2,3,4)
+lists  = [0, 1,2,3,4]
+string = "Hello World"
+dicts = {"a", 2}  
+range(0, 6, 2) # start, stop, interval
+               # somehow comparable to [0,2,4]
+file objects
+...
+	\end{minted}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{block}{for / iterable}<1->
+		\begin{minted}{python}
+for element in iterable:
+  print(e)
+		\end{minted}
+	\end{block}
+\begin{example}<2->
+		\begin{minted}{python}
+for i in range(5):
+  print(e) # 0, 1, 2, 3, 4
+for c in "Hello World":
+  print(e) # Every char
+for k in {"k": "v", "k2": "v2"}:
+  print(k) # Only the keys
+for k, v in {"k": "v", "k2": "v2"}.items():
+  print(k, v) # Unpacking
+\end{minted}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\textbf{Unpacking}:\\
+- Object with ordered members\\
+- Number of vars equal to members\footnote{\mintinline{python}{x, *xs  = [1, 2, 3, 4]}  $\rightarrow$ \mintinline{python}{xs = [2,3,4]}}.
+\begin{example}
+	\begin{minted}{python}
+a, b, c = (1, 2, 3)
+a, b,   = [1,2]
+	\end{minted}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	Exit the loop early?
+	\begin{block}{Break}
+	\begin{minted}{python}
+while True:   # works for "for i in .." aswell 
+  doThis()
+  if exitCondition:
+     break
+	\end{minted}
+	\end{block}
+	Skip to the next element?
+	\begin{block}{Continue}
+		\begin{minted}{python}
+for i in range(4):
+  if i == 2:
+    continue
+  print(i)
+-> 0, 1, 3
+		\end{minted}
+	\end{block}
+\end{frame}
 
 
+\begin{frame}[fragile]
+	\frametitle{02-number-guess.py}
+	\begin{exampleblock}{Exercise}
+Implement a basic python number guessing game.\\
+1. Generate a random number.\\
+2. Ask for a guess.\\
+3. Check if guess was correct.\\
+4. If not, say if number was smaller / larger\\
+5. Repeat from step 2, but only 7 times max.\\
+~\\
+Use following functions:
+		\begin{minted}{python}
+from random import randint(a, b)
+randint(0,1024)  # random integer N such that a <= N <= b
+input("Number?") # Takes input from user
+		\end{minted}
+	\end{exampleblock}
+\end{frame}
+% End of Part 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Part 3
 \end{document} 
