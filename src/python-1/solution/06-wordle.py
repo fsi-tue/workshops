@@ -21,6 +21,13 @@ yellowCube = "🟨"
 whiteCube  = "⬜"
 ###########################################
 def loadWords(path):
+    """
+    Load all word of file.
+    Input:
+        path: Str, path of file
+    Returns:
+        allWords: List of str.
+    """
     allWords = []
     with open(path, "r") as f:
         for line in f:
@@ -28,7 +35,34 @@ def loadWords(path):
             allWords.append(word)
     return allWords
 
+def allowedGuess(allWords, guess):
+    """
+    Check if guess is allowed (length = 5 and in wordlist) 
+    Input:
+        allWords: List of str
+        guess: str
+    Returns:
+        Boolean
+    """
+    if not len(guess) == 5:
+        return False
+    if not guess in allWords:
+        return False
+    return True
+
 def matchGuess(trueWord, guess):
+    """
+    Creates the Wordle representation of a guess:
+    Green Cube for correct letter at correct position.
+    Yellow Cube for correct letter at incorrect position.
+    White Cube otherwise.
+
+    Input: 
+        trueWord: str, the word to guess
+        guess: str, the actual guess
+    Returns:
+        match, str, Wordle representation.
+    """
     matches = ""
     for i, c in enumerate(guess):
         if c == trueWord[i]:
@@ -38,13 +72,6 @@ def matchGuess(trueWord, guess):
         else:
             matches += whiteCube
     return matches
-
-def allowedGuess(allWords, guess):
-    if not len(guess) == 5:
-        return False
-    if not guess in allWords:
-        return False
-    return True
 
 def main():
     # Load all Words
@@ -71,7 +98,7 @@ def main():
         else:
             print("Invalid guess. Try again!")
     else:
-        print("Looser")
+        print(f"Looser! The word was {trueWord}")
 
 if __name__ == "__main__":
     main()

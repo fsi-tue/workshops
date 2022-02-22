@@ -39,6 +39,7 @@ def allowedGuess(allWords, guess):
     Returns:
         Boolean
     """
+    return
 
 def matchGuess(trueWord, guess):
     """

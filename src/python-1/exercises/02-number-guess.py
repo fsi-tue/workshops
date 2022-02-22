@@ -20,6 +20,8 @@
 # Function input("Number?") will promt "Number?" and return 
 # the user-input as string
 
+from random import randint
+
 def main():
     pass
 

@@ -141,7 +141,7 @@ Uni Tübingen\\ % Your institution for the title page
 	Break
 	\end{exampleblock}
 	\begin{block}{}<2->
-	\textbf{Part 2: Basics}\\
+	\textbf{\textbf{Part 2:} Basics}\\
 	- Common operators\\
 	- Data types, type-casting\\
 	- Lists, dicts\\
@@ -155,10 +155,10 @@ Uni Tübingen\\ % Your institution for the title page
 \begin{frame}
 	\begin{block}{}
 		\textbf{Part 3: Abstraction}\\
-		- Functions, variable scope, lambda\\
+		- Functions, Imports, variable scope\\
+		- lambda\\
 		- Files / IO\\
 		- Exceptions\\
-		- recursion\\
 		- Objects, Classes\\
 	\end{block}
 	\begin{exampleblock}{}
@@ -174,7 +174,7 @@ Uni Tübingen\\ % Your institution for the title page
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Demo}
+	\frametitle{\textbf{Part 1:} Hello World}
 	\begin{minted}{bash}
 jules@T480:~$ python3
 Python 3.8.10 (default, Nov 26 2021, 20:14:08) 
@@ -487,14 +487,269 @@ Implement a basic python number guessing game.\\
 ~\\
 Use following functions:
 		\begin{minted}{python}
-from random import randint(a, b)
+from random import randint
 randint(0,1024)  # random integer N such that a <= N <= b
 input("Number?") # Takes input from user
 		\end{minted}
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{03-lists.py}
+	\begin{exampleblock}{Exercise}
+		Understand how to uses loops and lists.\\
+E1:\\
+Print the last element of list l1:
+\begin{minted}{python}
+l1 = ["first", "middle", "last"]
+\end{minted}
+E2.1:\\
+Print every second element of list l2\_1\\
+Without loop.
+\begin{minted}{python}
+l2_1 = [0,1,2,3,4,5,6,7,8,9]
+\end{minted}
+....
 	\end{exampleblock}
 \end{frame}
 % End of Part 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Part 3
+
+
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Part 3:} Abstraction}	
+	\textbf{Functions:}\\
+	- Decomposition of Code into parts\\
+	- Function acts like a black bock
+	\begin{minted}{python}
+def is_even(i):
+  """
+  Computes if an integer is even.
+  Input:
+  	i: int
+  Returns:
+  	even: bool, result.
+  """
+  even = (1 % 2) == 0
+  return even
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Part 3:} Abstraction}	
+	\textbf{Functions:}\\
+	- Decomposition of Code into parts.\\
+	- Function acts like a black bock.
+	\begin{minted}{python}
+def is_even(i):         <- keyword, name(parameters)
+  """                    _
+  Is integer is even?     |
+  Input:                  |
+    i: int                |> DocString
+  Returns:                |
+    even: bool, result.   |
+  """                    _|
+  even = (1 % 2) == 0     <- Computation
+  return even             <- Return (Optional)
+	\end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\begin{example}
+\begin{minted}{python}
+def noReturn(a, b):
+  print(a)
+
+def returnNone():
+  return
+
+def optionalReturn(x):
+  if x < 5:
+    return True
+ 
+def polymorphicReturn(x):
+  if x < 5:
+    return True
+  return x
+\end{minted}
+	\end{example}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\textbf{Import:} modules\\
+	- Full:~~~~~\mintinline{python}{import moduleName}\\
+	- Partial: \mintinline{python}{from moduleName import subModule} \\
+	- A lot of standard libraries:
+	\begin{itemize}
+		\item Math: random, statistics, math
+		\item Time: time, datetime 
+		\item OS/IO: argparse, os, pathlib, sys
+		\item Network: urllib3
+	\end{itemize}
+	- See: \url{https://docs.python.org/3/library/index.html}\\
+	- Extended standard: numpy, pandas, ...
+	
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Scope:}\\
+	- Which variables are visible from which part of the code.\\
+	- From outer to inner.\\
+	\begin{example}
+		\begin{minted}{python}
+def useX(y):
+  return y + x
+
+def modifyX(y):  
+  x = y + x
+
+x = 10
+y = useX(5)
+modifyX(y)
+print(x)
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Scope:}\\
+	- Which variables are visible from which part of the code.\\
+	- From outer to inner.\\
+	\begin{example}
+		\begin{minted}{python}
+def useX(y):
+  return y + x
+		
+def modifyX(y):  
+  x = y + x <- Assignment forces x to be local variable
+            -> Error: local variable 'x'
+	       referenced before assignment
+x = 10
+y = useX(5)
+modifyX(y)
+print(x)
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{scope.py}
+	\begin{example}
+		\begin{minted}{python}
+def g(x):
+  def h():
+	x = 'abc'
+  x = x + 1
+  print(f"x in g: {x}")
+  h()
+  return x
+		
+x = 3
+print(f"x at position 2: {x}")
+z = g(x)
+print(f"z at position 1: {z}")
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{lambda functions}:\\
+	- good for single use functions\\
+	- usually defined inline\\
+	- useful for currying
+\begin{example}{}
+\begin{minted}{python}
+l = [0,1,2,3,4,5,6,7,8,9]
+lPow = map(lambda x: pow(x,2), l)
+
+equiv to: [pow(x,2) for x in l]	
+
+\end{minted}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{File reading}:\\
+	- Files need to be opened and closed.\\
+	- We don't want to handle that...\\
+	\begin{example}
+		\begin{minted}{python}
+with open("path/file.txt", "r") as f:
+  line = f.readline()
+  content = f.read() # reads everything
+
+with open("path/file.txt", "r") as f: 
+  for line in f:
+    print(line)
+		\end{minted}
+		Modes:\\
+		- r, read\\
+	\end{example}
+\end{frame}
+\begin{frame}[fragile]
+	\textbf{File writing}:\\
+	\begin{example}
+		\begin{minted}{python}
+with open("path/file.txt", "w") as f:
+  f.write("string")
+  f.write("\n")
+  f.writelines(["line1", "l2", "l3"])
+	\end{minted}
+		Modes:\\
+		- w, overwrite / write\\
+		- a, append\\
+		- x, write, error if file exist
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{06-wordle.py}
+	\begin{figure}
+		\includegraphics[width=6cm]{figures/wordle.png}
+		\caption{Wordle by NYTimes, \url{https://www.nytimes.com/games/wordle}}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{06-wordle.py}
+	\begin{figure}
+		\includegraphics[width=5cm]{figures/wordle_terminal.png}
+		\caption{Our goal.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Object}:\\
+	- Instance of an Class.\\
+	- Has properties and methods. \\
+	- Everything is a object.\\
+\begin{exampleblock}{Class}
+	
+	\begin{minted}{python}
+class MinimalClass():
+  def __init__(self):
+    pass
+	\end{minted}
+\end{exampleblock}	
+\begin{block}{Object}
+\begin{minted}{python}
+x = MinimalClass()
+\end{minted}	
+\end{block}	
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+	TODO
+	From the Python source: \url{https://github.com/python/cpython/blob/main/Lib/random.py}	
+\end{frame}
+
 \end{document} 
