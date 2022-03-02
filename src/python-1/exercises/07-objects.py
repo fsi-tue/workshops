@@ -17,7 +17,7 @@
 #    Example: V1 + V1 -> Vector(2,4,6)
 
 # 5: Refactor/Extend code so that V1.add(Vector(2,3,4)) will mutate V1.
-# We do not wat to see dublicated code. Remember: use deepcopy to clone an object
+#    We do not want to see duplicated code. Remember: use deepcopy to clone an object
 
 from copy import deepcopy
 
