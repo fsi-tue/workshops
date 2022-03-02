@@ -89,6 +89,7 @@
 \usepackage{eurosym}
 \usepackage{qrcode}
 \usepackage{xcolor}
+\usepackage{qrcode}
 \definecolor{LightGray}{gray}{0.95}
 %----------------------------------------------------------------------------------------
 %     TITLE PAGE
@@ -158,19 +159,19 @@ Uni Tübingen\\ % Your institution for the title page
 		- Functions, Imports, variable scope\\
 		- lambda\\
 		- Files / IO\\
-		- Exceptions\\
 		- Objects, Classes\\
+		- Exceptions\\
 	\end{block}
 	\begin{exampleblock}{}
-	Break
+	End
 	\end{exampleblock}
-	\begin{block}{}<2->
-		\textbf{Part 4: Development}\\
-		- Arguments\\
-		- Modules / imports\\
-		- Virtual-Envs\\
-		- Tests
-	\end{block}
+\end{frame}
+\begin{frame}[fragile]
+	\frametitle{Resources}
+	\center
+	\qrcode{https://juleskreuer.eu/projekte/python/}\\
+	\center
+	\url{https://juleskreuer.eu/projekte/python/}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -483,7 +484,7 @@ Implement a basic python number guessing game.\\
 2. Ask for a guess.\\
 3. Check if guess was correct.\\
 4. If not, say if number was smaller / larger\\
-5. Repeat from step 2, but only 7 times max.\\
+5. Repeat from step 2, but only 8 times max.\\
 ~\\
 Use following functions:
 		\begin{minted}{python}
@@ -513,6 +514,30 @@ l2_1 = [0,1,2,3,4,5,6,7,8,9]
 ....
 	\end{exampleblock}
 \end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Deepcopy}
+= creates only a reference to the object / list	
+		\begin{example}
+			\begin{minted}{python}
+l1 = [1,2,3,4]
+l2 = l1
+l1.append(5)
+print(l2)
+[1, 2, 3, 4, 5]
+			\end{minted}
+		\end{example}
+
+\begin{block}{}
+\begin{minted}{python}
+from copy import deepcopy
+l2 = deepcopy(l1)
+\end{minted}
+\end{block}	
+See post from `Russia Must Remove Putin': \url{https://stackoverflow.com/a/46939443/5410925}	
+
+\end{frame}
+
 % End of Part 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -545,7 +570,7 @@ def is_even(i):
 	- Decomposition of Code into parts.\\
 	- Function acts like a black bock.
 	\begin{minted}{python}
-def is_even(i):         <- keyword, name(parameters)
+def is_even(i):          <- keyword, name(parameters)
   """                    _
   Is integer is even?     |
   Input:                  |
@@ -565,7 +590,7 @@ def is_even(i):         <- keyword, name(parameters)
 def noReturn(a, b):
   print(a)
 
-def returnNone():
+def optionalArgument(a, b=0):
   return
 
 def optionalReturn(x):
@@ -582,9 +607,10 @@ def polymorphicReturn(x):
 
 
 \begin{frame}[fragile]
-	\textbf{Import:} modules\\
+	\textbf{Modules / Import:}\\
 	- Full:~~~~~\mintinline{python}{import moduleName}\\
 	- Partial: \mintinline{python}{from moduleName import subModule} \\
+	- File in same directory: \mintinline{python}{import filename}\\
 	- A lot of standard libraries:
 	\begin{itemize}
 		\item Math: random, statistics, math
@@ -726,18 +752,18 @@ with open("path/file.txt", "w") as f:
 \end{frame}
 
 \begin{frame}[fragile]
-	\textbf{Object}:\\
-	- Instance of an Class.\\
+	\frametitle{Objects / Class}
+	- Object is instance of an Class.\\
 	- Has properties and methods. \\
 	- Everything is a object.\\
-\begin{exampleblock}{Class}
+\begin{block}{Class}
 	
 	\begin{minted}{python}
 class MinimalClass():
   def __init__(self):
     pass
 	\end{minted}
-\end{exampleblock}	
+\end{block}	
 \begin{block}{Object}
 \begin{minted}{python}
 x = MinimalClass()
@@ -745,11 +771,196 @@ x = MinimalClass()
 \end{block}	
 \end{frame}
 
+\begin{frame}[fragile]
+\textbf{Functions defined in a class}:\\
+- are applied on an object.\\
+- requires at least one argument (self).
+
+\begin{example}
+ \begin{minted}{python}
+class Counter():
+  def __init__(self, x):
+    self.x = x
+
+  def addOne(self):
+    self.x = self.x + 1
+    
+c = Counter(0)
+c.addOne()
+print(c.x)
+\end{minted}	
+\end{example}
+\end{frame}
 
 
 \begin{frame}[fragile]
-	TODO
-	From the Python source: \url{https://github.com/python/cpython/blob/main/Lib/random.py}	
+	\textbf{Functions defined in a class}:\\
+	- are applied on an object.\\
+	- requires at least one argument (self).
+	
+	\begin{example}
+		\begin{minted}{python}
+class Counter():
+  def __init__(self, x):
+    self.x = x       <- property
+	
+  def addOne(self):  <- self required
+	self.x = self.x + 1
+		
+c = Counter(0)       <- calling __init__
+c.addOne()           <- alling addOne()
+print(c.x)           <- accessing property
+		\end{minted}	
+	\end{example}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\textbf{Style / Information hiding}:\\
+	- Use getter / setter method outside of class\\
+	- Information hiding is NOT possible\\\\
+	\textbf{Inheritance}:
+	\begin{example}
+		\begin{minted}{python}
+class Animal():
+  def __init__(self, name):
+    self.name = name
+    
+class Cat(Animal):
+  def speak(self):
+	print("Meow")
+
+Cat("Kleopatra").speak()
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Magic Methods}\footnote{A complete guide: \url{https://rszalski.github.io/magicmethods/}}:\\
+	- Adds `magic' to a class.\\
+	- Start / end with \mintinline{python}{__} . Example: \mintinline{python}{__init__}\\
+	- Comparison, Type Conversion, Representation, Context
+	
+	\begin{example}
+		\begin{minted}{python}
+Cat("Kleopatra") == Cat("Kleopatra") 
+--> False (two different objects)
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Magic Methods}\footnote{A complete guide: \url{https://rszalski.github.io/magicmethods/}}:\\
+	- Adds `magic' to a class.\\
+	- Start / end with \mintinline{python}{__} . Example: \mintinline{python}{__init__}\\
+	- Comparison, Type Conversion, Representation, Context
+	
+	\begin{example}
+		\begin{minted}{python}
+Cat("Kleopatra") == Cat("Kleopatra") 
+--> False (two different objects)
+
+class Animal():
+  def __eq__(self, other):
+  	return self.name == other.name
+  
+--> Cat("Kleopatra") == Cat("Kleopatra") -> True
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{exampleblock}{Comparision}
+		\begin{tabular}{ll}
+Equality:&\mintinline{python}{__eq__(self, other)}\\
+Greater than:~~&\mintinline{python}{__gt__(self, other)}\\
+Less than: &\mintinline{python}{__lt__(self, other)}\\
+... &
+		\end{tabular}
+	\end{exampleblock}
+\begin{exampleblock}{Arithmetic}
+			\begin{tabular}{ll}
+Addition:&\mintinline{python}{__add__(self, other)}\\
+Multiplication:& \mintinline{python}{__mul__(self, other)}\\
+...&
+\end{tabular}
+\end{exampleblock}	
+\begin{exampleblock}{Sequences}
+			\begin{tabular}{ll}
+Iterator:~~~~~~~~~&\mintinline{python}{__iter__(self)}\\
+Reversed:&\mintinline{python}{__reversed__(self)}\\
+... &
+\end{tabular}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{07-objects.py}
+\begin{exampleblock}{Exercise}
+\textbf{Goal}: Implement a Vector-Class with following properties:\\
+~\\
+1: Holds values for x, y, z\\
+~~~ Example: V1 = Vector(1,2,3)\\
+2: Equal \mintinline{python}{__eq__}\\
+3: Print \mintinline{python}{__str__}\\	
+4: Vectors can be added, this will return a new vector\\
+~~~ Example: \mintinline{python}{V1 + V1 -> Vector(2,4,6)}\\
+5: Extend code so that \mintinline{python}{V1.add(Vector(2,3,4))} will mutate V1.\\
+~~~ We do not want to see duplicated code.\\
+~~~ Remember: use \mintinline{python}{deepcopy} to clone an object.
+\end{exampleblock}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exceptions}
+	- Error will raise an exception.\\
+	~~$\rightarrow$ terminates programme.\\
+	- We can catch and raise them.
+	\begin{block}{Raise}
+		\begin{minted}{python}
+raise Exception("Your error message")
+		\end{minted}
+	\end{block}
+	\begin{block}{Catch}
+\begin{minted}{python}
+try:
+  y = 1 / x
+except:
+  y = float("-inf")
+else:    <- optional
+  print("everything ok")
+\end{minted}	
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Exception types}\footnote{Complete list: \url{https://docs.python.org/3/library/exceptions.html}}:\\
+	Be more specific while raising / catching exceptions! 
+	\begin{exampleblock}{Types}
+	- ZeroDivisionError\\
+	- IndexError (lists)\\
+	- KeyError (dicts)\\
+	- TypeError (wrong type, forgot to cast?)
+	\end{exampleblock}
+	\begin{example}
+\begin{minted}{python}
+try:
+  y = 1 / x
+except ZeroDivisionError:
+  y = float("-inf")
+except Exception as e:
+  print("Other error:" , e)
+\end{minted}
+	\end{example}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\centering
+\LARGE
+Thank You!
+	
 \end{frame}
 
 \end{document} 
