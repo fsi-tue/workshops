@@ -1,0 +1,131 @@
+\documentclass[a4paper,12pt]{scrartcl}
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm, headsep=0mm, footskip=10mm]{geometry}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}  % Silbentrennung bei Sonderzeichen
+\usepackage[utf8]{inputenc} %Umlaute & Co
+\usepackage[normalem]{ulem}
+\usepackage{mathtools,amsthm,amssymb,amsfonts}
+\usepackage{marvosym}
+\usepackage{gauss} % Gaussverfahren mit Pfeilen
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage[neverdecrease,defblank]{paralist}   % enumerate, itemize,...
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{bm} %Fette Mathezeichen
+\usepackage[onehalfspacing]{setspace}
+\usepackage{array}
+\usepackage{ifthen}
+\usepackage{xparse}
+\usepackage{etoolbox} % toolbox of programming tools
+\usetikzlibrary{trees,automata,arrows,shapes}
+
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+  \vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+  \prevdepth=\tpd}
+%% Zahlenräume
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+%% Betrag
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+
+%% Vektoren beliebiger Länge
+%%(1.Parameter(Num):= #Einträge)
+%%Beispiel : \vector{3}{1}{2}{3}
+\newcount\vectorcount
+\renewcommand*\vector[1]{%
+  \global\vectorcount#1
+  \begin{pmatrix}
+    \vectornext
+}
+\def\vectornext#1{%
+  #1
+  \global\advance\vectorcount-1
+    \ifnum\vectorcount>0
+      \\
+      \expandafter\vectornext
+    \else
+      \end{pmatrix}
+    \fi
+}
+
+\makeatletter
+% Matrix beliebiger Größe (Bsp.: a,b;c,d)
+\def\@gobblesecondoftwo#1#2{#1}
+\NewDocumentCommand\Matrix{>{\SplitList;}m}{%
+  \begin{pmatrix*}[r]
+    \ProcessList{#1}\@Matrix%
+  \end{pmatrix*}
+}
+\NewDocumentCommand\@Matrix{>{\SplitList,}m}{%
+  \expandafter\expandafter\expandafter\@gobblesecondoftwo
+  \ProcessList{#1}\@@Matrix \\%
+}
+\def\@@Matrix#1{&#1}
+
+\newcounter{aufgabe}
+\def\tand{&}
+\newcommand{\makeTableLine}[2][0]{%
+  \setcounter{aufgabe}{1}%
+  \whiledo{\value{aufgabe} < #1}%
+  {%
+    #2\tand\stepcounter{aufgabe}%
+  }
+}
+\newcommand{\aufgTable}[2]{
+  \def\spalten{\numexpr #1\relax}
+  \def\centered{\centering\arraybackslash}
+  \begin{tabular}{|*{\spalten}{>{\centered}p{0.7cm}|} >{\centered}p{1.1cm}|}
+    \makeTableLine[\numexpr \spalten + 1 \relax]{A\theaufgabe}$\Sigma$~~\\ \hline
+    \rule{0pt}{15pt}\makeTableLine[\spalten]{} & \makebox[1.25cm][r]{/#2} \\
+  \end{tabular}
+}
+
+%\header{Blatt}{Tutor}{Abgabedatum}{Vorlesung}{Bearbeiter}{Semester}{#Aufgaben}{MaxPunkte}
+\newcounter{n}
+\def\header#1#2#3#4#5#6#7#8{\pagestyle{plain}
+\begin{minipage}[t]{0.35\textwidth}
+\begin{flushleft}
+{\bfseries #4}\\
+#5\\
+Tutor: #2
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.6\textwidth}
+\begin{flushright}
+#6 \vspace{0.5cm}\\
+\aufgTable{#7}{#8}
+\end{flushright}
+\end{minipage}
+\vspace{1cm}
+\begin{center}
+{\Large\bfseries Blatt #1}
+
+{(Abgabe #3)}
+\end{center}}
+
+\newcommand{\heading}[4]{\header{#1}{TUTORFILL}{#2}{FACHFILL}{\textit{NAME}}{WS17/18}{#3}{#4}%
+  \vspace{1em}
+}
+
+\begin{document}
+\titleformat{\section}[block]{}{}{0em}{\large\textbf{Aufgabe \thesection :} }{}
+%%\heading{Blatt Nummer}{AbgabeTermin}{Aufgaben}{Punkte}
+\heading{1}{2016-04-13}{4}{16}
+\section{}
+\begin{enumerate}[a)]
+\item Dies ist die bearbeitete Aufgabe
+\end{enumerate}
+
+
+
+
+
+\end{document}

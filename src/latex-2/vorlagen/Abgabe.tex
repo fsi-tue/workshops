@@ -1,0 +1,68 @@
+% Vorlage für LaTeX-Abgaben an der Uni Tübingen
+% Erstellt von Jules Kreuer (juleskreuer.eu)
+% Veröffentlicht am 24.04.2020 auf juleskreuer.eu
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% ---
+\documentclass[a4paper]{article}
+
+% Packages
+% ---
+\usepackage{amsmath} % Advanced Math Typesetting
+\usepackage[utf8]{inputenc} % Unicode support (Umlaute etc.)
+\usepackage[ngerman]{babel} % Change hyphenation rules
+
+\usepackage{amssymb}
+\usepackage{hyperref} % Links
+\usepackage{graphicx} % Vilder
+\usepackage{listings} % Source code highlighting
+\usepackage[inline]{enumitem}
+\usepackage{fullpage} % weniger abstand zu den seiten
+\usepackage{tabularx} % bessere Tabellen
+\usepackage{pdfpages} % pdf einbinden mit \includepdf[pages={2}]{x.pdf}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+% mit C{2cm} eine Zentrierte 2cm berite spalte machen
+
+ 
+%Code
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{textcomp}
+% Code
+\usepackage{minted}
+\begin{document}
+
+\author{Jules Kreuer - 4246938} % The authors name
+\title{\vspace{-2cm}Übungsblatt N \\
+	Lecture NAME}
+\date{\today{}} % Sets date you can remove \today{} and type a date manually
+\maketitle{} % Generates title
+
+\section{SectionTITEL}
+\subsection{SUBTITEL}
+%\includegraphics[height=7.1cm]{curl.png} \\
+LOREM IPSUM trtrt stsrtrs trsrtsrt st rstkof fgmf mgf mhgfh.\\
+asdasd
+\subsection{Table}
+ \begin{tabular}{|l|l|}
+ 	\hline
+	T1 & T2\\
+	\hline
+	https://uni-tuebingen.de &  Apache/2.4.25 \\
+	\hline
+	https://www.nginx.com/ & cloudflare-nginx \\
+	\hline
+	https://google.com & gws "Google Web Server" \\
+	\hline
+\end{tabular}
+\newpage
+\section{Code}
+\begin{minted}{python}
+	Generic Code with generic Highlighting
+\end{minted}
+nice formula
+\[
+	t = \frac{\overset{-}{x_1} - \overset{-}{x_2}}{s_{pooled}}\sqrt{\frac{n_1 * n_2}{n_1 + n_2}}
+\]
+\end{document}

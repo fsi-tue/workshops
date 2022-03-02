@@ -2,8 +2,7 @@
 
 ## PDF index
 
-Die Folien können mit dem Webbrowser
-[hier](https://fsi-tue.github.io/workshops/) betrachtet werden.
+Eine Übersicht aller Workshops und Folien kann [hier](https://fsi-tue.github.io/workshops/) betrachtet werden.
 
 ## Ordnerstruktur
 
