@@ -23,8 +23,25 @@
 from random import randint
 
 def main():
-    pass
+    toGuess = randint(0, 1024)
+    numberOfGuesses = 0
 
+    while numberOfGuesses < 8:
+        userGuess = input("Your guess:")
+        userGuess = int(userGuess)
+
+        if userGuess == toGuess:
+            print("Congrats, you found it.")
+            break
+        else:
+            numberOfGuesses += 1
+            if userGuess < toGuess:
+                print("The number is larger.")
+            else:
+                print("The number is smaller.")
+    
+    if numberOfGuesses == 7:
+        print("Looser! The number was " + str(toGuess))
 
 if __name__ == "__main__":
     main()
