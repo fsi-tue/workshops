@@ -12,6 +12,39 @@ styles:
     bottom: 3
 ---
 
+# Slide Centering and Scaling Guides
+
+```
+┏╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┳╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┓
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                     ╭╴┆╶╮                                     ┆
+┣╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼╋╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┫
+┆                                     ╰╴┆╶╯                                     ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
+┗╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┻╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┛
+```
+
+> This slide if for centering and scaling your terminal appropriately when using
+> `lookatme`. This entire presentation is built to fit this exact scaling. Please
+> ensure that the entire box above is visible without line wrapping. And that this
+> block quote isn't visible.
+
+---
+
 # _Batteries included?_
 
 > The Python source distribution has long maintained the
@@ -286,7 +319,8 @@ def do_parallel(task, args):
 
 ---
 
-   ╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
 # Interlude: the dreaded GIL...
 
 ## What?
@@ -301,4 +335,26 @@ Only one thread per process can use the python interpreter at a time!
 
 Threads in python are good at doing _nothing_, i.e. blocking I/O.
 
-   ╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
+---
+
+# ⏰ Break time!
+
+```
+                          ▄▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄ ▄▄▄▄▄▄▄  
+                          █ ▄▄▄ █ ▄  ▄▄█▄  ▀█ ▄ █ ▄▄▄ █  
+                          █ ███ █ ██▄█ █ █▀▀▀█  █ ███ █  
+                          █▄▄▄▄▄█ ▄▀▄ █▀▄ ▄▀█▀█ █▄▄▄▄▄█  
+                          ▄▄▄▄  ▄ ▄▀ ▀ ▄▄▀▀███▀▄  ▄▄▄ ▄  
+                          ▄▄█▄█▀▄▀▄▀   ▄▀ █ ▄▀█ ███ ▄▄▀  
+                           █▄█▀▄▄▀ ▄ █▀██▄█▄▀▄▀▀▀▀▀▄▄ ▀  
+                          █▀▄▀██▄ ▀▄█▀▄ █ █▀ ██▄▀█▄ ███  
+                          █▀▄██ ▄ ▀ ▄▄▀ ▀▀▀ ▄ █▄▀▀█▄ █   
+                          ▄▀▀▄▀ ▄▀██▄▄█ ▀█▄ ▀ ▀▀ █ ▀█▀   
+                           ▄▀█▀▀▄▄▄▄▄▄█ █▄▀█▄███▄▄▄▄█    
+                          ▄▄▄▄▄▄▄ ▀██▄█▄▄   ▀▄█ ▄ ██▀█▀  
+                          █ ▄▄▄ █  ▀▄ ▄▀██▄▄▀ █▄▄▄█▀▄█▄  
+                          █ ███ █ █ ▄█▀▄ ▀▀  ▀▀█ ▄▀▀▄ █  
+                          █▄▄▄▄▄█ █  ▀  █▄█ ▀██  ▀ █ █   
+```
