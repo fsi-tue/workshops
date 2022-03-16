@@ -8,6 +8,8 @@ Exercise 4: Do things in parallel
 𝙍𝙚𝙘𝙤𝙢𝙢𝙚𝙣𝙙𝙚𝙙 𝙡𝙞𝙗𝙧𝙖𝙧𝙞𝙚𝙨:
 - `concurrent.futures`
 """
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 def do_parallel(task, args):
     """Do a single task for different inputs in parallel.
@@ -24,7 +26,7 @@ def do_parallel(task, args):
     res = {}
     with ThreadPoolExecutor() as pool:
         futs = {
-            pool.submit(f, arg): arg
+            pool.submit(task, arg): arg
             for arg in args
         }
         for fut in as_completed(futs):

@@ -82,15 +82,18 @@ styles:
 | 14:30 - 14:45 | *break*              |
 | 14:45 - 16:00 | Exploration (& CLI?) |
 
+---
+
+# Todays plan
+
 ## Structure of a _what_
 
 1. Short Intro
-2. Exercise description
-3. Reading some documentation
-4. Doing the exercise
-5. If done with section
-    1. then goto 1.
-    2. else goto 2.
+2. Do some exploratory exercises:
+    1. Exercise description (≈5 min)
+    2. Reading some documentation (≈10 min)
+    3. Doing the exercise (≈10 min)
+    4. Discuss solutions (≈10 min)
 
 ---
 
@@ -121,10 +124,6 @@ Let's use _SWAPI_, the starwars API!
 ## Template
 
 ```python
-from urllib.request import urlopen
-import json
-
-
 def download_json(url):
     """Download a given url and parse its content as json.
 
@@ -143,10 +142,6 @@ def download_json(url):
 ## Solution
 
 ```python
-from urllib.request import urlopen
-import json
-
-
 def download_json(url):
     resp = urlopen(url)
     body = resp.read()
@@ -278,9 +273,6 @@ def download_chain(chain_link, get_result, start):
 ## Template
 
 ```python
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-
 def do_parallel(task, args):
     """Do a single task for different inputs in parallel.
 
@@ -302,14 +294,11 @@ def do_parallel(task, args):
 ## Solution
 
 ```python
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-
 def do_parallel(task, args):
     res = {}
     with ThreadPoolExecutor() as pool:
         futs = {
-            pool.submit(f, arg): arg
+            pool.submit(task, arg): arg
             for arg in args
         }
         for fut in as_completed(futs):
@@ -338,6 +327,72 @@ Threads in python are good at doing _nothing_, i.e. blocking I/O.
 ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
 
 ---
+
+# Loading the entire data set
+
+## Goals
+
+- Download the entire data set based starting from the APIs root
+- Save the data set to a file
+- Only perform the download if the file doesn't exist, otherwise
+  load the file
+
+## Batteries
+
+- `download_json` (see previous)
+- `download_chain` (see previous)
+- `do_parallel` (see previous)
+- `json`
+- `functools`
+- `operator`
+- `pathlib`
+
+---
+
+# Do things in parallel
+
+## Template
+
+```python
+def load_starwars(path):
+    """Download (and cache) the entire starwars data set.
+
+    :param path: The path to the cached JSON-file.
+    :type path: Path
+
+    :return: The starwars data set.
+    :rtype: Any
+    """
+```
+
+---
+
+# Do things in parallel
+
+## Solution
+
+```python
+def load_starwars(path=Path("starwars.json")):
+    if path.is_file():
+        with open(path, "r") as f:
+            return json.load(f)
+    else:
+        endpoints = download_json("https://swapi.dev/api")
+        data = do_parallel(
+            partial(
+                download_chain,
+                itemgetter("next"),
+                itemgetter("results")
+            ),
+            endpoints.values()
+        )
+        with open(path, "w+") as f:
+            json.dump(data, f)
+        return data
+```
+
+---
+
 
 # ⏰ Break time!
 

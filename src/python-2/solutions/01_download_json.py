@@ -10,6 +10,8 @@ Exercise 1: Downloading things...
 - `urllib`
 - `json`
 """
+from urllib.request import urlopen
+import json
 
 
 def download_json(url):

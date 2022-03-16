@@ -19,9 +19,9 @@ def download_chain(chain_link, get_result, url):
                        a chain
     :type chain_link: Callable[[Any], str]
 
-    :param chain_link: function to extract a list of relevant
+    :param get_result: function to extract a list of relevant
                        data from each link
-    :type chain_link: Callable[[Any], list[T]]
+    :type get_result: Callable[[Any], list[T]]
 
     :param url: first link in the chain
     :type url: str
