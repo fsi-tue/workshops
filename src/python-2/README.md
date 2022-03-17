@@ -56,22 +56,37 @@ just use the provided `Makefile`…
 Exercise Notes
 --------------
 
-### Exercise 01: Downloading things...
+### _Exercise 01:_ Downloading things...
 
 - Introduce the [Star Wars API](https://swapi.dev).
 - Show `urllib` and dive into `urllib.request`
 - Briefly discuss *context mangers*
 - Show `json`
 
-### Exercise 02: Downloading *complicated* things...
+### _Exercise 02:_ Downloading *complicated* things...
 
 - Show the linked list result style of the API
 
-### Exercise 03: Downloading *complicated* things... (but more generic)
+### _Exercise 03:_ Downloading *complicated* things... (but more generic)
 
 - Briefly discuss *higher order functions*
 
-### Exercise 04: Do things in parallel
+### _Exercise 04:_ URLs are ugly data...
+
+- Briefly introduce `re` and focus a bit on capture groups
+  (Do not introduce *all of regexs*, pleas just don't...)
+- Show them `^https://swapi\.dev/api/[^/]+/(\d+)/$` and be
+  done with it.
+
+### _Exercise 05:_ Cleaning up our data
+
+- Briefly mention duck-typing and show them `isinstance`
+- Discuss the _dictionary view objects_ and them "locking"
+  the keys and size of a dictionary during iteration.
+  (Escape this via `list(...)`!)
+- Show them `del`!
+
+### _Exercise 06:_ Doing things in parallel
 
 - Briefly discuss the nature of computationally disjointed
   tasks
@@ -97,13 +112,22 @@ Exercise Notes
       around and doing basically nothing. Perfect for
       multiple potentially long running network requests!
 
-### Exercise 05: Loading the entire data set
+### ⏰ Break
+
+- *The QR Code is a rick roll. Keep that in mind...*
+
+### _Exercise 07:_ Loading the entire data set
 
 - now join together all the parts from before
 - instead of writing `lambda`-functions directly show the
   participants the `functools` and `operator` libraries
-- **This exercise will take longer than the preceding ones!**
+- show them default argument values
 
-### ⏰ Break
+### Mutable Default Arguments Interlude
 
-- *The QR Code is a rick roll. Keep that in mind...*
+- Show them the problem of using for example a list-object
+  as a default argument.
+- Show remedy via default `None`-values.
+  (`arg = arg or ⟨default⟩`!)
+
+### _Exercise 08:_ Loading the entire data set (but less annoying for swapi.dev)
