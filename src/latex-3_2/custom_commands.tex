@@ -1,0 +1,63 @@
+%% Linksammlung
+
+% Math-mode Cheat Sheet
+\newcommand{\heinkenCheat}{https://www.caam.rice.edu/\~heinken/latex/symbols.pdf}
+\newcommand{\fontcalatogue}{https://tug.org/FontCatalogue/}
+\newcommand{\ctanFontAwesome}{https://www.ctan.org/pkg/fontawesome5}
+
+% Feedbacklink
+\newcommand{\linkMaterial}{https://phictional.de/tutor/LaTeX/}
+\newcommand{\linkFeedback}{https://phictional.de/tutor/feedback}
+
+
+
+% Hello command for Section 'Commands'
+\newcommand{\hello}[1][Phi]{Hallo #1, wie geht's so?}
+
+% Environments
+\newenvironment{para}[1]{
+    \begin{minipage}{1.5em}
+        \rotatebox{90}{\textsc{#1}}
+    \end{minipage}\begin{minipage}{\linewidth}
+}{
+    \end{minipage}\smallskip
+}
+
+\newcounter{joke}
+\newenvironment{joke}{
+    \refstepcounter{joke}
+    \noindent\colorbox{gray!50!white}{
+        \textbf{Witz~\thejoke}
+    } \\[.5em]
+}{\medskip}
+
+
+%% Aufgaben
+% Aufgabe 1
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbC}{\mathbb{C}}
+
+% Aufgabe 2
+\newcommand{\aufgabe}[2]{
+    \section*{Aufgabe #1\hfill\small\textcolor{gray}{(#2 Punkte)}}
+}
+
+% Aufgabe 3
+\newenvironment{loesung}[1][Lösung]{
+    \medskip
+    \noindent\textbf{#1}: 
+    
+    \medskip\noindent
+}{\\\smallskip}
+
+
+%% FONTS
+% https://tug.org/FontCatalogue/comicneue/
+\newcommand{\comicneue}{\fontfamily{ComicNeue-TLF}\selectfont}
+\DeclareTextFontCommand{\textcn}{\comicneue}
+
+
+

@@ -1,0 +1,16 @@
+% !TeX document-id = {7ea5ea35-35b7-4339-b876-d6ce65a67ef1}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+\documentclass[border = 2pt]{standalone}
+\usepackage[default]{FiraSans}
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{xcolor}
+
+\begin{document}
+    \begin{tabular}{c|c|c}
+        Standart & Fira Mono & DejaVu Sans Mono \\
+        \hline
+        {\fontfamily{cmtt}\selectfont               Test123} &
+        {\fontfamily{FiraMono-TOsF}\selectfont      Test123} &
+        {\fontfamily{DejaVuSansMono-TLF}\selectfont Test123} 
+    \end{tabular}
+\end{document}

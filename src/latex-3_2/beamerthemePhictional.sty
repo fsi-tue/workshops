@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Theme: Phictional
+%
+% Author:
+% Alexander Phi. Goetz
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% !TEX root = presentation.tex
+
+\RequirePackage{graphicx} % Allows including images
+\RequirePackage{booktabs} % Allows the use of \toprule, \midrule and
+                          % \bottomrule in tables
+\RequirePackage{listings}
+\RequirePackage{parcolumns}
+\RequirePackage[nocenter]{qtree}
+\RequirePackage{eurosym}
+\RequirePackage{qrcode}
+\RequirePackage{xcolor}
+
+\RequirePackage{hyperref}
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+% Code
+\RequirePackage{minted}
+\usemintedstyle{trac}
+
+%-------------------------------------------------------------------------------
+%       DEFAULTS
+%-------------------------------------------------------------------------------
+
+\useoutertheme{infolines}
+\useinnertheme{rectangles}
+\usecolortheme{seagull}
+
+\setbeamertemplate{headline}
+
+%-------------------------------------------------------------------------------
+%     COLORS
+%-------------------------------------------------------------------------------
+
+% Definition
+\definecolor{accent1}{HTML}{a09061}
+\definecolor{accent2}{HTML}{d8ca9d}
+\definecolor{eigengrau}{HTML}{16161d}
+\colorlet{mutedblue}{cyan!70!blue}
+\definecolor{LightGray}{gray}{0.95}
+
+% Usage
+\setbeamercolor{palette primary}{bg=accent2}
+\setbeamercolor{palette secondary}{bg=accent2}
+\setbeamercolor{palette tertiary}{fg=white,bg=accent1}
+\setbeamercolor{palette quaternary}{bg=accent2}
+
+\setbeamercolor{title}{fg=eigengrau}
+\setbeamercolor{frametitle}{fg=white,bg=accent1}
+\setbeamercolor{normal text}{fg=eigengrau}
+\setbeamercolor{headline}{bg=accent1}
+\setbeamercolor{itemize item}{fg=accent2}
+\setbeamercolor{itemize subitem}{fg=accent2}
+\setbeamercolor{itemize subsubitem}{fg=accent2}
+
+\setbeamercolor{section number projected}{fg=white,bg=accent2}
+\setbeamercolor{item projected}{fg=white,bg=accent2}
+
+\setbeamercolor{note header preview}{bg=accent2}
+
+\setbeamercolor{part title}{fg=eigengrau,bg=accent2}
+
+\setbeamercolor{block title example}{bg=accent2}
+\setbeamercolor{block body example}{bg=accent2!20!white}
+
+\setbeamercolor{block title alerted}{bg=mutedblue!35!white}
+\setbeamercolor{block body alerted}{bg=mutedblue!15!white}
+
+\setbeamercolor{block title}{bg=accent1,fg=white}
+\setbeamercolor{block body}{bg=accent1!25!white}
+
+%-------------------------------------------------------------------------------
+%     FONTS
+%-------------------------------------------------------------------------------
+
+\RequirePackage{fontspec}           % XeLaTeX
+\RequirePackage[mathletters]{ucs}   % use φ's intext
+\usepackage[fixed]{fontawesome5}
+
+% Sans font
+\RequirePackage[sfdefault,lining,scaled=.85]{FiraSans}
+\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+% Code Font
+\setmonofont{Fira Code}[Scale=0.8,Contextuals=Alternate]  
+\renewcommand*\verbatim@nolig@list{}
+
+
+\setbeamerfont{title}{size=\Huge}
+
+\setbeamerfont{section number projected}{%
+    family=\ttfamily,series=\bfseries,size=\small}
+
+\setbeamerfont{item projected}{%
+    family=\ttfamily,series=\bfseries,size=\small}
+
+
+%-------------------------------------------------------------------------------
+%     LAYOUTS
+%-------------------------------------------------------------------------------
+
+% Title page
+\setbeamertemplate{title page}[default][left]
+
+\def\ps@navigation@titlepage{%
+    \setbeamertemplate{footline}{}
+    \setbeamertemplate{headline}{}
+    \setbeamertemplate{navigation symbols}{}
+    \@nameuse{ps@navigation}}
+
+\addtobeamertemplate{title page}{\thispagestyle{navigation@titlepage}}{}
+
+% Progressbar
+\def\progressbar@progressbar{}  % the progress bar
+\newcount\progressbar@tmpcounta % auxiliary counter
+\newcount\progressbar@tmpcountb % auxiliary counter
+\newdimen\progressbar@pbht      % progressbar height
+\newdimen\progressbar@pbwd      % progressbar width
+\newdimen\progressbar@tmpdim    % auxiliary dimension
+
+\progressbar@pbwd=1.19\linewidth
+\progressbar@pbht=0.3em
+
+% the progress bar
+\def\progressbar@progressbar{%
+    \progressbar@tmpcounta=\the\numexpr\insertframenumber-1\relax
+    \progressbar@tmpcountb=\the\numexpr\inserttotalframenumber-1\relax
+    \progressbar@tmpdim=\progressbar@pbwd
+    \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+    \divide\progressbar@tmpdim by \progressbar@tmpcountb
+    
+    \begin{tikzpicture}
+        \fill[accent1]				% Background
+        (0pt, 0pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+        
+        \fill[accent2!40!accent1] 	% Progress
+        (0pt, 0pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+    \end{tikzpicture}%
+}
+
+\DeclareOption{progressbar}{
+    \addtobeamertemplate{headline}{}{%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=0.5em,center,dp=0ex]{black}%
+            \progressbar@progressbar%
+        \end{beamercolorbox}%
+    }
+}
+\DeclareOption*{}
+\ProcessOptions\relax
+
+
+% Section page
+\setbeamertemplate{section page}{
+    \vspace{10ex}
+    \begin{columns}
+        \begin{column}{\paperwidth}
+            \begin{beamercolorbox}[sep=12pt,left]{part title}
+                \usebeamerfont{section title}\LARGE\insertsection\par
+            \end{beamercolorbox}
+        \end{column}
+    \end{columns}
+}
+
+% Note page
+\setbeamertemplate{note page}{
+    \begin{beamercolorbox}[wd=\textwidth,ht=7em,left]{note header}
+        \begin{beamercolorbox}[wd=.6\textwidth,ht=7em,left]{note header left}
+            \Large Notizen: \\
+        \end{beamercolorbox}
+        \hfill
+        \begin{beamercolorbox}[wd=15em,ht=7em,center]{note header preview}
+            \insertslideintonotes{0.25}
+            \vspace{0.5em}
+        \end{beamercolorbox}
+    \end{beamercolorbox} 
+    \small
+    \insertnote
+}
+
+
+%-------------------------------------------------------------------------------
+%       COMMANDS & ENVIRONMENTS
+%-------------------------------------------------------------------------------
+
+% Title page frame command
+\newcommand{\titleframe}{
+    \frame{\titlepage}
+}
+
+% Section page command
+\newcommand{\sectionframe}{{
+        %\setbeamertemplate{headline}{}
+        \frame{\sectionpage}
+}}
+
+\newcommand{\blankframe}{
+    \bgroup
+    \setbeamertemplate{headline}{}
+    \setbeamertemplate{footline}{}
+    \setbeamertemplate{navigation symbols}{}
+    \setbeamercolor{background canvas}{bg=black}
+    
+    \begin{frame}[plain]{}
+    \end{frame}
+    \egroup
+}
+
+\renewcommand{\emph}[1]{\textcolor{accent1}{#1}}
+
+\newcommand{\material}[2][height=.3\textwidth]{
+    \begin{center}
+        \qrcode[#1]{#2} \\[1em]
+        \small\url{#2}
+     \end{center}}

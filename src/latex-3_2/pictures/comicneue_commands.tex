@@ -1,0 +1,14 @@
+% !TeX document-id = {c9f1eb3f-6a2d-4ec4-8be0-7892063a6b33}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+\documentclass[border = 2pt]{standalone}
+\usepackage[T1]{fontenc}
+
+\newcommand{\comicneue}{\fontfamily{ComicNeue-TLF}\selectfont}
+\DeclareTextFontCommand{\textcn}{\comicneue}
+
+\begin{document}
+    \begin{tabular}{l}
+        {\comicneue Hier steht etwas auf diese Weise} \\
+        \textcn{Hier steht etwas auf die andere Weise}
+    \end{tabular}
+\end{document}
