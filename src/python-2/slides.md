@@ -97,7 +97,7 @@ styles:
 
 ---
 
-# Project of the day: Starwars-Thingy!
+# Project of the day: Something with Starwars!
 
 Let's use _SWAPI_, the starwars API!
 
@@ -105,7 +105,7 @@ Let's use _SWAPI_, the starwars API!
 
 ---
 
-# Downloading things...
+# _Exercise 1:_ Downloading things...
 
 ## Goals
 
@@ -119,7 +119,7 @@ Let's use _SWAPI_, the starwars API!
 
 ---
 
-# Downloading things...
+# _Exercise 1:_ Downloading things...
 
 ## Template
 
@@ -137,7 +137,7 @@ def download_json(url):
 
 ---
 
-# Downloading things...
+# _Exercise 1:_ Downloading things...
 
 ## Solution
 
@@ -150,7 +150,7 @@ def download_json(url):
 
 ---
 
-# Downloading _complicated_ things...
+# _Exercise 2:_ Downloading _complicated_ things...
 
 ## Goals
 
@@ -162,7 +162,7 @@ def download_json(url):
 
 ---
 
-# Downloading _complicated_ things...
+# _Exercise 2:_ Downloading _complicated_ things...
 
 ## Template
 
@@ -180,7 +180,7 @@ def download_chain(start):
 
 ---
 
-# Downloading _complicated_ things...
+# _Exercise 2:_ Downloading _complicated_ things...
 
 ## Solution
 
@@ -197,7 +197,7 @@ def download_chain(start):
 
 ---
 
-# Downloading _complicated_ things... (but more generic)
+# _Exercise 3:_ Downloading _complicated_ things... (but more generic)
 
 ## Goals
 
@@ -211,7 +211,7 @@ def download_chain(start):
 
 ---
 
-# Downloading _complicated_ things... (but more generic)
+# _Exercise 3:_ Downloading _complicated_ things... (but more generic)
 
 ## Template
 
@@ -237,7 +237,7 @@ def download_chain(chain_link, get_result, start):
 
 ---
 
-# Downloading _complicated_ things... (but more generic)
+# _Exercise 3:_ Downloading _complicated_ things... (but more generic)
 
 ## Solution
 
@@ -254,7 +254,112 @@ def download_chain(chain_link, get_result, start):
 
 ---
 
-# Do things in parallel
+# _Exercise 4:_ URLs are ugly data...
+
+## Goals
+
+- Get rid of those ugly URLs...
+
+## Batteries
+
+- `re` [(docs)](https://docs.python.org/3/library/re.html)
+
+---
+
+# _Exercise 4:_ URLs are ugly data...
+
+## Template
+
+```python
+def url_to_id(string):
+    """Extract the ID out of a given string.
+
+    :param string: The string to extract the ID from.
+    :type string: str
+
+    :return: Either the extracted ID or the original string
+    :rtype: str
+    """
+```
+
+---
+
+# _Exercise 4:_ URLs are ugly data...
+
+## Solution
+
+```python
+def url_to_id(string):
+    if (m := re.match(
+        r"^https://swapi\.dev/api/[^/]+/(\d+)+/$",
+        string
+    )):
+        return m.groups()[0]
+    else:
+        return string
+```
+
+---
+
+# _Exercise 5:_ Cleaning up our data
+
+## Goals
+
+- Map the URL removal over all our data
+- Transform from list to dictionary (keyed by ID)
+- Rename "url"-field to "id"-field
+
+## Batteries
+
+- `url_to_id` (see previous)
+- `isinstance` [(docs)](https://docs.python.org/3/library/functions.html#isinstance)
+- `del` [(docs)](https://docs.python.org/3/tutorial/datastructures.html#the-del-statement)
+- _dictionary view objects_ [(docs)](https://docs.python.org/3/library/stdtypes.html#dictionary-view-objects)
+
+---
+
+# _Exercise 5:_ Cleaning up our data
+
+## Template
+
+```python
+def clean_data(data):
+    """Clean up and transform a given data set.
+
+    :param data: Data set to clean and transform
+    :type data: list[Any]
+
+    :return: Cleaned and transformed data set.
+    :rtype: dict[str, Any]
+    """
+```
+
+---
+
+# _Exercise 5:_ Cleaning up our data
+
+## Solution
+
+```python
+def clean_data(data):
+    new = {}
+    for obj in objs:
+        for key, value in list(obj.items()):
+            if isinstance(value, list):  #
+                obj[key] = [
+                    url_to_id(elem)
+                    for elem in value
+                ]
+            elif key == "url":
+                del obj["url"]
+                obj["id"] = url_to_id(value)
+        new[obj["id"]] = obj
+    return new
+```
+
+---
+
+# _Exercise 6:_ Doing things in parallel
 
 ## Goals
 
@@ -268,7 +373,7 @@ def download_chain(chain_link, get_result, start):
 
 ---
 
-# Do things in parallel
+# _Exercise 6:_ Doing things in parallel
 
 ## Template
 
@@ -289,7 +394,7 @@ def do_parallel(task, args):
 
 ---
 
-# Do things in parallel
+# _Exercise 6:_ Doing things in parallel
 
 ## Solution
 
@@ -328,71 +433,6 @@ Threads in python are good at doing _nothing_, i.e. blocking I/O.
 
 ---
 
-# Loading the entire data set
-
-## Goals
-
-- Download the entire data set based starting from the APIs root
-- Save the data set to a file
-- Only perform the download if the file doesn't exist, otherwise
-  load the file
-
-## Batteries
-
-- `download_json` (see previous)
-- `download_chain` (see previous)
-- `do_parallel` (see previous)
-- `json`
-- `functools`
-- `operator`
-- `pathlib`
-
----
-
-# Do things in parallel
-
-## Template
-
-```python
-def load_starwars(path):
-    """Download (and cache) the entire starwars data set.
-
-    :param path: The path to the cached JSON-file.
-    :type path: Path
-
-    :return: The starwars data set.
-    :rtype: Any
-    """
-```
-
----
-
-# Do things in parallel
-
-## Solution
-
-```python
-def load_starwars(path=Path("starwars.json")):
-    if path.is_file():
-        with open(path, "r") as f:
-            return json.load(f)
-    else:
-        endpoints = download_json("https://swapi.dev/api")
-        data = do_parallel(
-            partial(
-                download_chain,
-                itemgetter("next"),
-                itemgetter("results")
-            ),
-            endpoints.values()
-        )
-        with open(path, "w+") as f:
-            json.dump(data, f)
-        return data
-```
-
----
-
 
 # ⏰ Break time!
 
@@ -412,4 +452,151 @@ def load_starwars(path=Path("starwars.json")):
                           █ ▄▄▄ █  ▀▄ ▄▀██▄▄▀ █▄▄▄█▀▄█▄  
                           █ ███ █ █ ▄█▀▄ ▀▀  ▀▀█ ▄▀▀▄ █  
                           █▄▄▄▄▄█ █  ▀  █▄█ ▀██  ▀ █ █   
+```
+
+---
+
+# _Exercise 7:_ Loading the entire data set
+
+## Goals
+
+- Download the entire data set based starting from the APIs root
+
+## Batteries
+
+- `download_json` (see previous)
+- `download_chain` (see previous)
+- `do_parallel` (see previous)
+- `clean_data` (see previous)
+- `functools` [(docs)](https://docs.python.org/3/library/functools.html)
+- `operator` [(docs)](https://docs.python.org/3/library/operator.html)
+- *default argument values* [(docs)](https://docs.python.org/3/tutorial/controlflow.html#default-argument-values)
+
+---
+
+# _Exercise 7:_ Loading the entire data set
+
+## Template
+
+```python
+def download_starwars(root):
+    """Download and clean the entire starwars data set.
+
+    :param root: The APIs root url
+    :type root: str
+
+    :return: The starwars data set.
+    :rtype: Any
+    """
+```
+
+---
+
+# _Exercise 7:_ Loading the entire data set
+
+## Solution
+
+```python
+def download_starwars(root="https://swapi.dev/api"):
+    endpoints = download_json(root)
+    data = do_parallel(
+        partial(
+            download_chain,
+            itemgetter("next"),
+            itemgetter("results")
+        ),
+        endpoints.values()
+    )
+    data = {
+        name: clean_data(data[endpoint])
+        for name, endpoint in endpoints.items()
+    }
+    return data
+```
+
+---
+
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
+# Interlude: mutable default arguments...
+
+## What?
+
+Mutable default arguments **do not "reset" after a call**.
+
+```python
+def test(arg=[]):
+    arg.append(1)
+    print(arg)
+
+test()  # → [1]
+test()  # → [1,1]
+```
+
+## What??
+
+Most common fix:
+
+```python
+def test(arg=None)
+    arg = arg or []
+    ...
+```
+
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
+---
+
+# _Exercise 8:_ Loading the entire data set (but less annoying for swapi.dev)
+
+## Goals
+
+- Download the data and store it as a file
+- Load the data from a file instead of downloading it if the
+  file exists.
+
+## Batteries
+
+- `download_starwars` (see previous)
+- `pathlib` [(docs)](https://docs.python.org/3/library/pathlib.html)
+- `json` [(docs)](https://docs.python.org/3/library/json.html)
+- `open` [(docs)](https://docs.python.org/3/library/functions.html#open)
+
+---
+
+# _Exercise 8:_ Loading the entire data set (but less annoying for swapi.dev)
+
+## Template
+
+```python
+def load_starwars(path, root):
+    """Download and clean the entire starwars data set.
+
+    :param path: File path to JSON file.
+    :type path: str
+
+    :param root: The APIs root url
+    :type root: str
+
+    :return: The starwars data set.
+    :rtype: Any
+    """
+```
+
+---
+
+# _Exercise 8:_ Loading the entire data set (but less annoying for swapi.dev)
+
+## Solution
+
+```python
+def load_starwars(path="starwars.json", root="https://swapi.dev/api"):
+    if Path(path).is_file():
+        with open(path, "r") as f:
+            return json.load(f)
+    else:
+        data = download_starwars(root)
+        with open(path, "w+") as f:
+            json.dump(data, f)
+    return data
 ```
