@@ -1,11 +1,23 @@
 # Commands und Environments
 
-| Startdatei | Enddatei       |
-|------------|----------------|
-| `main.tex` | `solution.tex` |
+## Dateien
 
+| Datei                        | Beschreibung                               |
+|------------------------------|--------------------------------------------|
+| [README.md](README.md)       | Diese Datei hier                           |
+| [main.tex](main.tex)         | **START** Die Datei zum Start des Kapitels |
+| [solution.tex](solution.tex) | Live-Edits und Lösung der Aufgaben         |
 
 Die Startdatei ist die [typische Tübinger Informatik Vorlage][Vorlage].
+
+
+## Usage
+
+Zum Rendern der `.tex`-Dateien folgenden Befehl verwenden:
+
+```
+pdflatex --shell-escape -synctex=1 -interaction=nonstopmode "main".tex
+```
 
 
 ## Resourcen
