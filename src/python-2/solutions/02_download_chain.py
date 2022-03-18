@@ -21,10 +21,8 @@ def download_chain(url):
     :rtype: list[Any]
     """
     res = []
-    while True:
+    while url is not None:
         data = download_json(url)
         res.extend(data["results"])
         url = data["next"]
-        if url is None:
-            break
     return res

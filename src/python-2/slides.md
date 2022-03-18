@@ -5,11 +5,11 @@ author: Tim Fischer <me@timfi.dev>
 styles:
   style: gruvbox-dark
   margin:
-    top: 3
+    top: 2
     bottom: 0
   padding:
-    top: 3
-    bottom: 3
+    top: 2
+    bottom: 2
 ---
 
 # Slide Centering and Scaling Guides
@@ -24,9 +24,11 @@ styles:
 ┆                                       ┆                                       ┆
 ┆                                       ┆                                       ┆
 ┆                                       ┆                                       ┆
+┆                                       ┆                                       ┆
 ┆                                     ╭╴┆╶╮                                     ┆
 ┣╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼╋╾╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╼┫
 ┆                                     ╰╴┆╶╯                                     ┆
+┆                                       ┆                                       ┆
 ┆                                       ┆                                       ┆
 ┆                                       ┆                                       ┆
 ┆                                       ┆                                       ┆
@@ -427,7 +429,7 @@ Only one thread per process can use the python interpreter at a time!
 
 ## What???
 
-Threads in python are good at doing _nothing_, i.e. blocking I/O.
+Threads in python are good at doing _literally nothing_, i.e. blocking I/O.
 
 ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
 
@@ -518,7 +520,7 @@ def download_starwars(root="https://swapi.dev/api"):
 
 ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
 
-# Interlude: mutable default arguments...
+# Interlude: Mutable Default Arguments...
 
 ## What?
 
@@ -538,9 +540,10 @@ test()  # → [1,1]
 Most common fix:
 
 ```python
-def test(arg=None)
-    arg = arg or []
-    ...
+def test(arg=None)   # ← NEW! ✨
+    arg = arg or []  # ← NEW! ✨
+    arg.append(1)
+    print(arg)
 ```
 
 ╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
@@ -598,5 +601,148 @@ def load_starwars(path="starwars.json", root="https://swapi.dev/api"):
         data = download_starwars(root)
         with open(path, "w+") as f:
             json.dump(data, f)
-    return data
+        return data
+```
+
+---
+
+# _Exercise 9:_ Get all character by film
+
+## Goals
+
+- Get all character dictionaries for each film
+
+## Batteries
+
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+
+---
+
+# _Exercise 9:_ Get all character by film
+
+## Template
+
+```python
+def characters_by_film(data):
+    """Get all characters by film.
+
+    :param data: Starwars dataset
+
+    :return: Character dictionaries grouped by films.
+    :rtype: dict[FilmId, list[CharDict]]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 9:_ Get all character by film
+
+## Solution
+
+```python
+def characters_by_film(data):
+    res = defaultdict(list)
+    for film_id, film in data["films"].items():
+        for character_id in film["characters"]:
+            res[film_id].append(data["people"][character_id])
+    return res
+```
+
+---
+
+# _Exercise 10:_ Get mean character height per film
+
+## Goals
+
+- Get the mean character height per film, ignoring those with
+  unknown heights
+
+## Batteries
+
+- `characters_by_film` (see previous)
+- `statistics` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+
+---
+
+# _Exercise 10:_ Get mean character height per film
+
+## Template
+
+```python
+def mean_character_height_by_film(data):
+    """Get mean character height per film.
+
+    :param data: Starwars dataset
+
+    :return: Mapping between film IDs and the associated
+             average height.
+    :rtype: dict[FilmId, float]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 10:_ Get mean character height per film
+
+## Solution
+
+```python
+def mean_character_height_by_film(data):
+    return {
+        film_id: mean(
+            int(character["height"])
+            for character in characters
+            if character["height"] != "unknown"
+        )
+        for film_id, characters in characters_by_film(data).items()
+    }
+```
+
+---
+
+# _Exercise 11:_ Count vehicles by their class
+
+## Goals
+
+- Count the number of vehicles for all vehicle classes.
+
+## Batteries
+
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+
+---
+
+# _Exercise 11:_ Count vehicles by their class
+
+## Template
+
+```python
+def vehicles_per_class(data):
+    """Count vehicles by their class.
+
+    :param data: Starwars dataset
+
+    :return: Vehicles counts per class.
+    :rtype: dict[VehicleClass, int]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 11:_ Count vehicles by their class
+
+## Solution
+
+```python
+def vehicles_per_class(data):
+    return Counter(
+        v["vehicle_class"]
+        for v in data["vehicles"].values()
+    )
 ```
