@@ -13,13 +13,12 @@
 
 # 3: Vectors can be printed in a nice way.
 
-# 4: Vectors can be added, this will return a new vector
+# 4: Vectors can be added, this will return a new vector.
+#    Neither V1 nor V2 shall be altered.
 #    Example: V1 + V1 -> Vector(2,4,6)
 
 # 5: Refactor/Extend code so that V1.add(Vector(2,3,4)) will mutate V1.
-#    We do not want to see duplicated code. Remember: use deepcopy to clone an object
-
-from copy import deepcopy
+#    We do not want to see duplicated code.
 
 class Vector:
     def __init__(self, x, y, z):
@@ -34,7 +33,7 @@ class Vector:
         return f"Vector({self.x, self.y, self.z})"
 
     def __add__(self, o):
-        newV = deepcopy(self)
+        newV = Vector(self.x, self.y, self.z)
         newV.add(o)
         return newV
 
