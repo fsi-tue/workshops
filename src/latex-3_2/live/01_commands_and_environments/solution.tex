@@ -1,3 +1,5 @@
+% !TeX document-id = {85e2339c-8979-4e3c-b8f8-e83964bef4d8}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 % ----------------------- TODO ---------------------------
 % Diese Daten müssen pro Blatt angepasst werden:
 \newcommand{\NUMBER}{1}
@@ -39,9 +41,55 @@
 %------------------------------------------------------------------------------
 %     START: Our Commands & Environments
 %------------------------------------------------------------------------------
+\usepackage{lipsum} % Für Fülltext
+
+%% Commands
+% Slide 7
+\newcommand{\hello}[1][Phi]{Hallo #1, wie geht's so?}
+
+% Slide 9
+%\renewcommand{\square}{^2}
 
 
+%% Environments
+% Slide 12
+\newenvironment{para}[1]{
+\begin{minipage}{1.5em}
+    \rotatebox{90}{\textsc{#1}}
+\end{minipage}\begin{minipage}{\linewidth}
+}{\end{minipage}\smallskip}
 
+% Slide 13
+\newcounter{joke}
+\newenvironment{joke}{
+    \refstepcounter{joke}
+    \noindent
+    \colorbox{gray!50!white}{
+        \textbf{Witz~\thejoke}
+    } \\[.5em]
+}{\medskip}
+
+
+%% Aufgaben
+% Aufgabe 1: Zahlenräume
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbC}{\mathbb{C}}
+
+% Aufgabe 2: Aufgaben-Section mit Punkten
+\newcommand{\aufgabe}[2]{
+\section*{Aufgabe #1\hfill\small\textcolor{gray}{(#2 Punkte)}}
+}
+
+% Aufgabe 3: Lösungs-Umgebung
+\newenvironment{loesung}[1][Lösung]{
+    \medskip
+    \noindent\textbf{#1}: 
+    
+    \medskip\noindent
+}{\\\smallskip}
 
 
 %------------------------------------------------------------------------------
@@ -117,17 +165,60 @@
 %------------------------------------------------------------------------------
 %     START: Our Command & Environment Usage
 %------------------------------------------------------------------------------
+
 \section*{Unsere Spielereien}
 
+\subsection*{Commands}
+\subsubsection*{newcommand}
+\hello \\
+\hello[Jules]
+
+\subsubsection*{renewcommand}
+\noindent
+$\Box\square$
 
 
+\subsection*{Environments}
+
+\begin{para}{Lorem Ipsum Text}
+    \lipsum[2-3]
+\end{para}
 
 
+\begin{joke}
+    Wie heißt ein weißes Mammut?\\
+    \textbf{Helmut!}
+\end{joke}
+
+\begin{joke}
+    Was macht ein Mathematiker beim Skifahren?\\
+    \textbf{Er rechnet mit Brüchen!}
+\end{joke}
+
+\noindent
+Es wurden \thejoke~ Witze gemacht!
 
 
+\subsection*{Aufgaben:\quad Commands und Environments}
+\begin{itemize}
+    \item Natürliche Zahlen: $\bbN$
+    \item Ganze Zahlen: $\bbZ$
+    \item Rationale Zahlen: $\bbQ$
+    \item Reelle Zahlen: $\bbR$
+    \item Komplexe Zahlen: $\bbC$
+\end{itemize}
 
+\[\bbN \subset \bbZ \subset \bbQ \subset \bbR \subset \bbC\]
 
+\aufgabe{42}{5}
+Hier steht eine Aufgabenstellung Bliblablub.
 
+\begin{loesung}
+    \lipsum[5]
+\end{loesung}
+
+\noindent
+Hier steht anderer Text. \lipsum[2]
 
 \newpage
 %------------------------------------------------------------------------------
