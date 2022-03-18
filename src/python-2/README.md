@@ -94,7 +94,7 @@ Exercise Notes
   spoiling example, those who find it will have it easier
   but that's the point: #rtfm)
 
-### GIL Interlude
+### _Interlude:_ the dreaded GIL...
 
 - What is the GIL?
     - Global Interpreter Lock
@@ -123,7 +123,7 @@ Exercise Notes
   participants the `functools` and `operator` libraries
 - show them default argument values
 
-### Mutable Default Arguments Interlude
+### _Interlude:_ Mutable Default Arguments...
 
 - Show them the problem of using for example a list-object
   as a default argument.
@@ -131,3 +131,12 @@ Exercise Notes
   (`arg = arg or ⟨default⟩`!)
 
 ### _Exercise 08:_ Loading the entire data set (but less annoying for swapi.dev)
+
+- Briefly introduce file-I/O via `open`
+- Show `json.load` and `json.dump` (notice the missing `s` at the end of each!)
+
+### _Exercise 09:_ Get all character by film
+
+### _Exercise 10:_ Get mean character height per film
+
+### _Exercise 11:_ Count vehicles by their class

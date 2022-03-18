@@ -36,4 +36,4 @@ def load_starwars(path="starwars.json", root="https://swapi.dev/api"):
         data = download_starwars(root)
         with open(path, "w+") as f:
             json.dump(data, f)
-    return data
+        return data

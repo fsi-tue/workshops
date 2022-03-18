@@ -30,10 +30,8 @@ def download_chain(chain_link, get_result, url):
     :rtype: list[T]
     """
     res = []
-    while True:
+    while url is not None:
         data = download_json(url)
         res.extend(get_result(data))
         url = chain_link(data)
-        if url is None:
-            break
     return res
