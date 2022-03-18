@@ -22,7 +22,7 @@
 \usepackage{lipsum}
 
 
-\setbeameroption{show notes}
+\setbeameroption{hide notes}
 
 \mode<presentation> {
     %\usetheme[progressbar]{Phictional} % Ab 36 Folien gibts nen Arithmetic overflow ¯\_(ツ)\_/¯
@@ -37,10 +37,10 @@
 %-------------------------------------------------------------------------------
 
 % short title for footline and long title for title page
-\title[\LaTeX\ extended]{\uppercase{Weiterführendes \LaTeX}} 
+\title[\LaTeX\ Advanced]{\uppercase{Weiterführendes \LaTeX}} 
 \subtitle{\uppercase{Eigene Environments bis hin zu eigenen Packages}}
 
-\date{\itshape\today} % date
+\date[14.04.22]{\itshape 14. April 2022} % date
 
 % short name for footline and long name for title page
 \author[\textbf{Phi}]{Alexander \emph{Phi} Goetz 
@@ -69,7 +69,7 @@
         \column{.3\textwidth}
         \centering
         {\faFileDownload\Large Material}
-        \material[height=.7\textwidth]{https://phictional.de/tutor/LaTeX/}
+        \material[height=.7\textwidth]{\linkMaterial}
     \end{columns}
 \end{frame}
 
@@ -86,10 +86,7 @@
 \begin{frame}
     \sectionpage
     \vspace{.5em}
-    \begin{tabular}{ll}
-        \faFolderOpen[regular]Start:  & \mintinline{sh}{live/Start.tex} \\
-        Lösung: & \mintinline{sh}{live/01_commands_and_environments/main.tex} 
-    \end{tabular}    
+    \large\faFolderOpen \normalsize \mintinline{sh}{live/01_commands_and_environments/} 
 \end{frame}
 
 \begin{frame}{\insertsection}
@@ -208,7 +205,11 @@ $\Box\square$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Environments}
-\sectionframe
+\begin{frame}
+    \sectionpage
+    \vspace{.5em}
+    \large\faFolderOpen \normalsize \mintinline{sh}{live/01_commands_and_environments/} 
+\end{frame}
 
 \begin{frame}[fragile]{\insertsection}
     
@@ -385,7 +386,7 @@ $\Box\square$
     Es gibt den Befehl \mintinline{tex}{\mathbb{}} für den Mathe-Modus.
     \colorbox{accent2!50!white}{$ \mintinline{tex}{\mathbb{R}} \Rightarrow \mathbb{R} $}
     
-    \begin{alertblock}{Aufgabe 1:\quad Zahlenräume}
+    \begin{alertblock}{Aufgabe \aufgabennummer:\quad Zahlenräume}
         Schreibe 
             \[ \bbN \subset \bbZ \subset \bbQ \subset \bbR \subset \bbC \]
         mittels Custom Commands nach dem Muster
@@ -396,7 +397,7 @@ $\Box\square$
 \end{frame}
 
 \begin{frame}{\insertsection}
-    \begin{alertblock}{Aufgabe 2:\quad Aufgaben-Section mit Punkten}
+    \begin{alertblock}{Aufgabe \aufgabennummer:\quad Aufgaben-Section mit Punkten}
         Ziemlich was der Titel sagt. Entwerfe einen Befehl 
         \mintinline[]{tex}{\aufgabe}, der \textbf{zwei}
         Argumente erwartet:
@@ -417,7 +418,7 @@ $\Box\square$
 \end{frame}
 
 \begin{frame}{\insertsection}
-    \begin{alertblock}{Aufgabe 3:\quad Lösungs-Umgebung}
+    \begin{alertblock}{Aufgabe \aufgabennummer:\quad Lösungs-Umgebung}
         
         \begin{columns}
             \column{.6\linewidth}
@@ -453,10 +454,7 @@ $\Box\square$
 \begin{frame}
     \sectionpage
     \vspace{.5em}
-    \begin{tabular}{ll}
-        Start:  & \faFileCode[regular] \mintinline{sh}{live/01_commands_and_environments/main.tex} \\
-        Lösung: & \faFileCode[regular] \mintinline{sh}{live/02_fonts/main.tex} 
-    \end{tabular}    
+    \large \faFolderOpen \mintinline{sh}{live/02_fonts/} 
 \end{frame}
 
 
@@ -670,7 +668,7 @@ Hier wieder nicht.
 % TODO: fontawesome
 
 \begin{frame}{\insertsection}
-    \begin{alertblock}{Aufgabe 4: \quad Neue Monospaced Schriftart}
+    \begin{alertblock}{Aufgabe \aufgabennummer: \quad Neue Monospaced Schriftart}
         Suche dir im \textbf{\LaTeX  Font Catalogue}\footnote{\fontcalatogue} eine neue
         Typewriter-Font aus, die die \textbf{Computer Modern} Monospace Schriftart
         ersetzt. \\
@@ -691,7 +689,7 @@ Hier wieder nicht.
     \begin{columns}
         \column{.7\textwidth}
             
-        \begin{alertblock}{Aufgabe 5: \quad Awesome Fonts \small\faGrinHearts[regular]}
+        \begin{alertblock}{Aufgabe \aufgabennummer: \quad Awesome Fonts \small\faGrinHearts[regular]}
             Neben den normalen Schriftarten gibts auch andere witzige Dinge.\\[1em]        
             Deine Aufgabe ist es folgende Sequenz von Symbolen anzugeben:
             
@@ -724,10 +722,7 @@ Hier wieder nicht.
 \begin{frame}
     \sectionpage
     \vspace{.5em}
-    \begin{tabular}{ll}
-        Start:  & \mintinline{sh}{live/02_fonts/main.tex} \\
-        Lösung: & \mintinline{sh}{live/03_packages/main.tex} 
-    \end{tabular}    
+    \large \faFolderOpen \mintinline{sh}{live/03_packages/}   
 \end{frame}
 
 
@@ -812,12 +807,6 @@ Hier wieder nicht.
     \end{overprint}
 \end{frame}
 
-\begin{frame}
-    Inhalt...
-\end{frame}
-
-% TODO
-
 
 %%======================%%
 %%      Aufgaben        %%
@@ -827,8 +816,37 @@ Hier wieder nicht.
 \sectionframe
 
 
-% TODO
-% Move custom stuff into package/class for assignment
+\begin{frame}{\insertsection}
+    \begin{alertblock}{Aufgabe \aufgabennummer: Alle Befehle sind schon da \small\faMusic}
+        Sind sie das? Funktionieren alle Befehle und Umgebungen in 
+        \texttt{uebungsblatt.sty} ohne Probleme in einer anderen Datei? \\[1em]
+        Kommentiere \mintinline{tex}{\EXERCISES} in \texttt{main.tex} aus.\\
+        Sorge dafür, dass das keinen Fehler wirft. Selbiges für die anderen
+        Übungsblatt spezifischen Befehle.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{\insertsection}
+    \begin{columns}
+        \column{.7\textwidth}
+        
+        \begin{alertblock}{Zusatzaufgabe \aufgabennummer: \mintinline{tex}{\documentclass{uebungsblatt}}}
+            Neben Packages gibt es noch Klassen. Benutzt und benötigt in jedem 
+            Dokument: \mintinline{tex}{\documentclass[a4paper]{scratcl}}\\[1em]
+            
+            Schreibe \texttt{uebungsblatt.sty} zu \texttt{uebungsblatt.cls} um.
+            Richte dich nach der \textbf{Overleaf Dokumentation}.\\
+            Der Artikel zum Unterschied von Package und Class ist auch empfohlen.
+        \end{alertblock}
+        
+        
+        \column{.3\textwidth}
+        \material[height=.7\textwidth]{\overleafClass}
+        
+        
+    \end{columns}
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -839,12 +857,95 @@ Hier wieder nicht.
 \begin{frame}
     \sectionpage
     \vspace{.5em}
-    \begin{tabular}{ll}
-        Material:  & \mintinline{sh}{live/04_markdown_and_pandoc/}
-    \end{tabular}    
+    \large \faFolderOpen \mintinline{sh}{live/04_markdown_and_pandoc/}\\
+           \faLink \url{\pandoc} \\
+           \faLink \url{\gfmspec}
 \end{frame}
 
-% TODO
+\begin{frame}[fragile]{\faMarkdown Markdown}
+    \begin{minted}[style=emacs]{markdown}
+# Was ist Markdown? Das ist Markdown!
+
+- Markdown ist eine _simple_ Notation für Text, 
+  Notizen, usw.
+- Wird von Git-hostern unterstützt (`.md`, `.markdown`)
+- Ist als "Source-Code" menschenlesbar
+- [Spezifikation](https://github.github.com/gfm/)
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pandoc}}
+    \begin{Definition}[\texttt{pandoc --help}]
+        \begin{minted}{sh}
+pandoc [OPTIONS] [FILES]
+-f FORMAT, -r FORMAT  --from=FORMAT, --read=FORMAT                    
+-t FORMAT, -w FORMAT  --to=FORMAT, --write=FORMAT                     
+-o FILE               --output=FILE                   
+        \end{minted}
+        
+    \end{Definition}
+    \begin{Beispiel}[\faMarkdown\faArrowRight\faLaptop]
+        \mint{sh}{>>> pandoc -f markdown -t html -o info.html info.md}
+    \end{Beispiel}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pandoc}}
+    \begin{columns}
+        \column{.6\textwidth}
+        
+        \begin{Beispiel}[\faMarkdown\faArrowRight\faFilePdf]
+            \begin{minted}{sh}
+>>> pandoc -f markdown -t pdf \
+>     --pdf-engine=xelatex    \
+>     -o default.pdf          \
+>     shownotes.md
+            \end{minted}
+        \end{Beispiel}
+    
+    
+        \column{.4\textwidth}
+        
+        \vspace{-7em}
+        \begin{figure}
+            \includegraphics[page=1,height=1.2\textheight]{pictures/default.pdf}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsection \quad\small Präsentationen}
+    
+    \begin{Beispiel}[\faMarkdown\faArrowRight\faTv\faFilePdf]
+        \mint{sh}{>>> pandoc -f markdown -t beamer -o slides.pdf slides.md}
+    \end{Beispiel}
+
+    \begin{columns}
+        \column{.47\linewidth}
+        
+        \begin{Beispiel}[\faMarkdown\faArrowRight\faTv HTML]
+            \begin{minted}[fontsize=\small]{sh}
+>>> pandoc \
+>   -f markdown -t slidy \
+>   -s --mathjax         \
+>   -o slidy.html slides.md
+            \end{minted}
+        \end{Beispiel}
+        
+        
+        \column{.005\linewidth}
+        
+        \column{.47\linewidth}
+        
+        \begin{Beispiel}[\faMarkdown\faArrowRight\faTv HTML]
+            \begin{minted}[fontsize=\small]{sh}
+>>> pandoc \
+>   -f markdown -t revealjs \
+>   -s --mathjax            \
+>   -o revealjs.html slides.md
+            \end{minted}
+        \end{Beispiel}
+        
+    \end{columns}
+\end{frame}
 
 
 %-------------------------------------------------------------------------------
