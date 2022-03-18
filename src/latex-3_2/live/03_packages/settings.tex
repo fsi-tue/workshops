@@ -1,0 +1,163 @@
+%==================================================================
+% 		Preface in its own file
+%==================================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{pdflscape}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{polynom}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{forloop}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{algpseudocode,algorithm,algorithmicx}
+
+%------------------------------------------------------------------------------
+%     START: Our Commands & Environments
+%------------------------------------------------------------------------------
+\usepackage{lipsum} % Für Fülltext
+
+%% Commands
+% Slide 7
+\newcommand{\hello}[1][Phi]{Hallo #1, wie geht's so?}
+
+% Slide 9
+%\renewcommand{\square}{^2}
+
+
+%% Environments
+% Slide 12
+\newenvironment{para}[1]{
+	\begin{minipage}{1.5em}
+		\rotatebox{90}{\textsc{#1}}
+	\end{minipage}\begin{minipage}{\linewidth}
+	}{\end{minipage}\smallskip}
+
+% Slide 13
+\newcounter{joke}
+\newenvironment{joke}{
+	\refstepcounter{joke}
+	\noindent
+	\colorbox{gray!50!white}{
+		\textbf{Witz~\thejoke}
+	} \\[.5em]
+}{\medskip}
+
+
+%% Aufgaben
+% Aufgabe 1: Zahlenräume
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbC}{\mathbb{C}}
+
+% Aufgabe 2: Aufgaben-Section mit Punkten
+\newcommand{\aufgabe}[2]{
+	\section*{Aufgabe #1\hfill\small\textcolor{gray}{(#2 Punkte)}}
+}
+
+% Aufgabe 3: Lösungs-Umgebung
+\newenvironment{loesung}[1][Lösung]{
+	\medskip
+	\noindent\textbf{#1}: 
+	
+	\medskip\noindent
+}{\\\smallskip}
+
+
+%% Fonts
+
+% Andere "Schriftarten"
+% https://tug.org/FontCatalogue/
+\usepackage[T1]{fontenc} % Notwendig für so ziemlich jede Schriftart
+% \usepackage{fontspec}  % Für Xe(La)TeX und Lua(La)TeX
+
+% Dokumentenweit
+% https://tug.org/FontCatalogue/comicneue/
+%\usepackage[default]{comicneue}
+
+% Inline
+\newcommand{\comicneue}{\fontfamily{ComicNeue-TLF}\selectfont}
+\DeclareTextFontCommand{\textcn}{\comicneue}
+
+
+%% Aufgaben
+% Aufgabe 4: Neue Monospaced Schriftart
+% https://tug.org/FontCatalogue/firamono/
+\usepackage{FiraMono}
+
+% Aufgabe 5: Awesome Fonts
+% https://www.ctan.org/pkg/fontawesome5
+% https://ftp.fau.de/ctan/fonts/fontawesome5/doc/fontawesome5.pdf
+\usepackage{fontawesome5}
+
+
+
+%------------------------------------------------------------------------------
+%     END: Our Commands & Environments
+%------------------------------------------------------------------------------
+
+%Definiere Let-Command für algorithmen
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+
+%Größe der Ränder setzen
+\geometry{a4paper,left=3cm, right=3cm, top=3cm, bottom=3cm}
+
+%Kopf- und Fußzeile
+\pagestyle {fancy}
+\fancyhead[L]{Tutor: \TUTOR}
+\fancyhead[C]{\COURSE}
+\fancyhead[R]{\today}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{Seite \thepage /\pageref*{LastPage}}
+
+%Formatierung der Überschrift, hier nichts ändern
+\def\header#1#2{
+	\begin{center}
+		{\Large Übungsblatt #1}\\
+		{(Abgabetermin #2)}
+	\end{center}
+}
+
+%Definition der Punktetabelle, hier nichts ändern
+\newcounter{punktelistectr}
+\newcounter{punkte}
+\newcommand{\punkteliste}[2]{%
+	\setcounter{punkte}{#2}%
+	\addtocounter{punkte}{-#1}%
+	\stepcounter{punkte}%<-- also punkte = m-n+1 = Anzahl Spalten[1]
+	\begin{center}%
+		\begin{tabularx}{\linewidth}[]{@{}*{\thepunkte}{>{\centering\arraybackslash} X|}@{}>{\centering\arraybackslash}X}
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				\thepunktelistectr &
+			}
+			#2 &  $\Sigma$ \\
+			\hline
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				&
+			} &\\
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				&
+			} &\\
+		\end{tabularx}
+	\end{center}
+}
