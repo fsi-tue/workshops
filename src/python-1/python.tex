@@ -32,7 +32,7 @@
 %\usetheme{Bergen}
 %\usetheme{Berkeley}
 %\usetheme{Berlin}
-%\usetheme{Boadilla}
+\usetheme{Boadilla}
 %\usetheme{CambridgeUS}
 %\usetheme{Copenhagen}
 %\usetheme{Darmstadt}
@@ -43,7 +43,7 @@
 %\usetheme{Ilmenau}
 %\usetheme{JuanLesPins}
 %\usetheme{Luebeck}
-\usetheme{Madrid}
+%\usetheme{Madrid}
 %\usetheme{Malmoe}
 %\usetheme{Marburg}
 %\usetheme{Montpellier}
@@ -516,8 +516,7 @@ l2_1 = [0,1,2,3,4,5,6,7,8,9]
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Deepcopy}
-= creates only a reference to the object / list	
+	\frametitle{by value / by reference}
 		\begin{example}
 			\begin{minted}{python}
 l1 = [1,2,3,4]
@@ -528,12 +527,6 @@ print(l2)
 			\end{minted}
 		\end{example}
 
-\begin{block}{}
-\begin{minted}{python}
-from copy import deepcopy
-l2 = deepcopy(l1)
-\end{minted}
-\end{block}	
 See post from `Russia Must Remove Putin': \url{https://stackoverflow.com/a/46939443/5410925}	
 
 \end{frame}
