@@ -76,7 +76,7 @@ Exercise Notes
 - Briefly introduce `re` and focus a bit on capture groups
   (Do not introduce *all of regexs*, pleas just don't...)
 - Show them `^https://swapi\.dev/api/[^/]+/(\d+)/$` and be
-  done with it.
+  done with it. ([demo](https://regexr.com/6hr3t))
 
 ### _Exercise 05:_ Cleaning up our data
 
@@ -112,10 +112,6 @@ Exercise Notes
       around and doing basically nothing. Perfect for
       multiple potentially long running network requests!
 
-### ⏰ Break
-
-- *The QR Code is a rick roll. Keep that in mind...*
-
 ### _Exercise 07:_ Loading the entire data set
 
 - now join together all the parts from before
@@ -135,8 +131,17 @@ Exercise Notes
 - Briefly introduce file-I/O via `open`
 - Show `json.load` and `json.dump` (notice the missing `s` at the end of each!)
 
-### _Exercise 09:_ Get all character by film
 
-### _Exercise 10:_ Get mean character height per film
 
-### _Exercise 11:_ Count vehicles by their class
+### ⏰ Break
+
+- *The QR Code is a rick roll. Keep that in mind...*
+
+### _Exercise 9:_ Who's the longest?!
+### _Exercise 10:_ Who's in what class?
+### _Exercise 11:_ Who's the longest, but per class?!
+### _Exercise 12:_ How many are there?
+### _Exercise 13:_ Group vehicles by films
+### _Exercise 14:_ Group anything by films
+### _Exercise 15:_ How unique is a category in a film?
+### _Exercise 16:_ 𝗙𝗜𝗡𝗔𝗟𝗟𝗬! Which film is the "uniquest"?

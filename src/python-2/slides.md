@@ -92,14 +92,14 @@ styles:
 
 1. Short Intro
 2. Do some exploratory exercises:
-    1. Exercise description (≈5 min)
-    2. Reading some documentation (≈10 min)
-    3. Doing the exercise (≈10 min)
-    4. Discuss solutions (≈10 min)
+    1. Exercise description (≈1-2 min)
+    2. Reading some documentation (≈5 min)
+    3. Thinking/doing the exercise (≈5 min)
+    4. Discuss solutions (≈5 min)
 
 ---
 
-# Project of the day: Something with Starwars!
+# Project of the day: What is the most unique Starwars Movie?
 
 Let's use _SWAPI_, the starwars API!
 
@@ -435,29 +435,6 @@ Threads in python are good at doing _literally nothing_, i.e. blocking I/O.
 
 ---
 
-
-# ⏰ Break time!
-
-```
-                          ▄▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄ ▄▄▄▄▄▄▄  
-                          █ ▄▄▄ █ ▄  ▄▄█▄  ▀█ ▄ █ ▄▄▄ █  
-                          █ ███ █ ██▄█ █ █▀▀▀█  █ ███ █  
-                          █▄▄▄▄▄█ ▄▀▄ █▀▄ ▄▀█▀█ █▄▄▄▄▄█  
-                          ▄▄▄▄  ▄ ▄▀ ▀ ▄▄▀▀███▀▄  ▄▄▄ ▄  
-                          ▄▄█▄█▀▄▀▄▀   ▄▀ █ ▄▀█ ███ ▄▄▀  
-                           █▄█▀▄▄▀ ▄ █▀██▄█▄▀▄▀▀▀▀▀▄▄ ▀  
-                          █▀▄▀██▄ ▀▄█▀▄ █ █▀ ██▄▀█▄ ███  
-                          █▀▄██ ▄ ▀ ▄▄▀ ▀▀▀ ▄ █▄▀▀█▄ █   
-                          ▄▀▀▄▀ ▄▀██▄▄█ ▀█▄ ▀ ▀▀ █ ▀█▀   
-                           ▄▀█▀▀▄▄▄▄▄▄█ █▄▀█▄███▄▄▄▄█    
-                          ▄▄▄▄▄▄▄ ▀██▄█▄▄   ▀▄█ ▄ ██▀█▀  
-                          █ ▄▄▄ █  ▀▄ ▄▀██▄▄▀ █▄▄▄█▀▄█▄  
-                          █ ███ █ █ ▄█▀▄ ▀▀  ▀▀█ ▄▀▀▄ █  
-                          █▄▄▄▄▄█ █  ▀  █▄█ ▀██  ▀ █ █   
-```
-
----
-
 # _Exercise 7:_ Loading the entire data set
 
 ## Goals
@@ -606,11 +583,84 @@ def load_starwars(path="starwars.json", root="https://swapi.dev/api"):
 
 ---
 
-# _Exercise 9:_ Get all character by film
+
+# ⏰ Break time!
+
+```
+                          ▄▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄ ▄▄▄▄▄▄▄  
+                          █ ▄▄▄ █ ▄  ▄▄█▄  ▀█ ▄ █ ▄▄▄ █  
+                          █ ███ █ ██▄█ █ █▀▀▀█  █ ███ █  
+                          █▄▄▄▄▄█ ▄▀▄ █▀▄ ▄▀█▀█ █▄▄▄▄▄█  
+                          ▄▄▄▄  ▄ ▄▀ ▀ ▄▄▀▀███▀▄  ▄▄▄ ▄  
+                          ▄▄█▄█▀▄▀▄▀   ▄▀ █ ▄▀█ ███ ▄▄▀  
+                           █▄█▀▄▄▀ ▄ █▀██▄█▄▀▄▀▀▀▀▀▄▄ ▀  
+                          █▀▄▀██▄ ▀▄█▀▄ █ █▀ ██▄▀█▄ ███  
+                          █▀▄██ ▄ ▀ ▄▄▀ ▀▀▀ ▄ █▄▀▀█▄ █   
+                          ▄▀▀▄▀ ▄▀██▄▄█ ▀█▄ ▀ ▀▀ █ ▀█▀   
+                           ▄▀█▀▀▄▄▄▄▄▄█ █▄▀█▄███▄▄▄▄█    
+                          ▄▄▄▄▄▄▄ ▀██▄█▄▄   ▀▄█ ▄ ██▀█▀  
+                          █ ▄▄▄ █  ▀▄ ▄▀██▄▄▀ █▄▄▄█▀▄█▄  
+                          █ ███ █ █ ▄█▀▄ ▀▀  ▀▀█ ▄▀▀▄ █  
+                          █▄▄▄▄▄█ █  ▀  █▄█ ▀██  ▀ █ █   
+```
+
+---
+
+# _Exercise 9:_ Who's the longest?!
 
 ## Goals
 
-- Get all character dictionaries for each film
+- Get the longest vehicle per class.
+- Ignore those with unknown size.
+
+## Batteries
+
+- `max` [(docs)](https://docs.python.org/3/library/functions.html#max)
+
+---
+
+# _Exercise 9:_ Who's the longest?!
+
+## Template
+
+```python
+def longest_vehicle(data):
+    """Get longest vehicle per class.
+
+    :param data: Starwars dataset
+
+    :return: Vehicles counts per class.
+    :rtype: Vehicle
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 9:_ Who's the longest?!
+
+## Solution
+
+```python
+def longest_vehicle(data):
+    return max(
+        (
+            vehicle
+            for vehicle in data["vehicles"].values()
+            if vehicle["length"] != "unknown"
+        ),
+        key=lambda p: float(p["length"])
+    )
+```
+
+---
+
+# _Exercise 10:_ Who's in what class?
+
+## Goals
+
+- Group all vehicles by their vehicles classes.
 
 ## Batteries
 
@@ -618,18 +668,18 @@ def load_starwars(path="starwars.json", root="https://swapi.dev/api"):
 
 ---
 
-# _Exercise 9:_ Get all character by film
+# _Exercise 10:_ Who's in what class?
 
 ## Template
 
 ```python
-def characters_by_film(data):
-    """Get all characters by film.
+def vehicles_by_class(data):
+    """Get all vehicles grouped by their classes.
 
     :param data: Starwars dataset
 
-    :return: Character dictionaries grouped by films.
-    :rtype: dict[FilmId, list[CharDict]]
+    :return: Grouped vehicles
+    :rtype: dict[VehicleClass, list[Vehicle]]
     """
 ```
 
@@ -637,48 +687,45 @@ def characters_by_film(data):
 
 ---
 
-# _Exercise 9:_ Get all character by film
+# _Exercise 10:_ Who's in what class?
 
 ## Solution
 
 ```python
-def characters_by_film(data):
+def vehicles_by_class(data):
     res = defaultdict(list)
-    for film_id, film in data["films"].items():
-        for character_id in film["characters"]:
-            res[film_id].append(data["people"][character_id])
+    for vehicle in data["vehicles"].values():
+        res[vehicle["vehicle_class"]].append(vehicle)
     return res
 ```
 
 ---
 
-# _Exercise 10:_ Get mean character height per film
+# _Exercise 11:_ Who's the longest, but per class?!
 
 ## Goals
 
-- Get the mean character height per film, ignoring those with
-  unknown heights
+- Get the biggest vehicle per class.
+- Ignore those with unknown size.
 
 ## Batteries
 
-- `characters_by_film` (see previous)
-- `statistics` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
 
 ---
 
-# _Exercise 10:_ Get mean character height per film
+# _Exercise 11:_ Who's the longest, but per class?!
 
 ## Template
 
 ```python
-def mean_character_height_by_film(data):
-    """Get mean character height per film.
+def longest_vehicle_per_class(data):
+    """Get biggest vehicle per class.
 
     :param data: Starwars dataset
 
-    :return: Mapping between film IDs and the associated
-             average height.
-    :rtype: dict[FilmId, float]
+    :return: Vehicles counts per class.
+    :rtype: dict[VehicleClass, Vehicle]
     """
 ```
 
@@ -686,25 +733,26 @@ def mean_character_height_by_film(data):
 
 ---
 
-# _Exercise 10:_ Get mean character height per film
+# _Exercise 11:_ Who's the longest, but per class?!
 
 ## Solution
 
 ```python
-def mean_character_height_by_film(data):
-    return {
-        film_id: mean(
-            int(character["height"])
-            for character in characters
-            if character["height"] != "unknown"
-        )
-        for film_id, characters in characters_by_film(data).items()
-    }
+def longest_vehicle_per_class(data):
+    res = defaultdict(lambda: {"length": "0"})
+    for v in data["vehicles"].values():
+        vclass = v["vehicle_class"]
+        if (
+            v["length"] != "unknown"
+            and float(v["length"]) > float(res[vclass]["length"])
+        ):
+            res[vclass] = v
+    return res
 ```
 
 ---
 
-# _Exercise 11:_ Count vehicles by their class
+# _Exercise 12:_ How many are there?
 
 ## Goals
 
@@ -712,11 +760,11 @@ def mean_character_height_by_film(data):
 
 ## Batteries
 
-- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.Counter)
 
 ---
 
-# _Exercise 11:_ Count vehicles by their class
+# _Exercise 12:_ How many are there?
 
 ## Template
 
@@ -735,7 +783,7 @@ def vehicles_per_class(data):
 
 ---
 
-# _Exercise 11:_ Count vehicles by their class
+# _Exercise 12:_ How many are there?
 
 ## Solution
 
@@ -744,5 +792,233 @@ def vehicles_per_class(data):
     return Counter(
         v["vehicle_class"]
         for v in data["vehicles"].values()
+    )
+```
+
+---
+
+# _Exercise 13:_ Group vehicles by films
+
+## Goals
+
+- Get all vehicles grouped by films.
+- Use a "human readable" key format
+    - e.g. `Episode ⟨𝘌𝘗𝘐𝘚𝘖𝘋𝘌#⟩: ⟨𝘛𝘐𝘛𝘓𝘌⟩`
+
+## Batteries
+
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+- *f-strings* [(docs)](https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals)
+
+---
+
+# _Exercise 13:_ Group vehicles by films
+
+## Template
+
+```python
+def vehicles_by_film(data):
+    """Get all characters by film.
+
+    :param data: Starwars dataset
+
+    :return: Vehicles grouped by films.
+    :rtype: dict[str, list[Vehicle]]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 13:_ Group vehicles by films
+
+## Solution
+
+```python
+def vehicles_by_film(data):
+    res = defaultdict(list)
+    for film_id, film in data["films"].items():
+        episode = (int(film_id) + 2) % 6 + 1
+        key = f"Episode {episode}: {film['title']}"
+        for vehicle_id in film["vehicles"]:
+            res[key].append(data["vehicles"][vehicle_id])
+    return res
+```
+
+---
+
+# _Exercise 14:_ Group anything by films
+
+## Goals
+
+- Make the previous exercise more generic.
+    - i.e. make it work for people, starships, etc. 
+
+## Batteries
+
+- `vehicles_by_film` (see previous)
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+
+---
+
+# _Exercise 14:_ Group anything by films
+
+## Template
+
+```python
+def by_film(data, film_field, data_field):
+    """Group things by film.
+
+    :param data: Starwars dataset
+
+    :param film_field: Name of "relation" field on a film.
+    :type film_field: str
+
+    :param data_field: Name of "data" field in dataset.
+    :type data_field: str 
+
+    :return: Things grouped by films.
+    :rtype: dict[str, list[Thing]]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 14:_ Group anything by films
+
+## Solution
+
+```python
+def by_film(data, film_field, data_field=None):
+    data_field = data_field or film_field
+    res = defaultdict(list)
+    for film_id, film in data["films"].items():
+        episode = (int(film_id) + 2) % 6 + 1
+        key = f"Episode {episode}: {film['title']}"
+        for vehicle_id in film[film_field]:
+            res[key].append(data[data_field][vehicle_id])
+    return res
+```
+
+---
+
+# _Exercise 15:_ How unique is a category in a film?
+
+## Goals
+
+- Calculate the uniqueness of things in film.
+- Show the results per film.
+
+## Batteries
+
+- `by_film` (see previous)
+- `collections` [(docs)](https://docs.python.org/3/library/collections.html#collections.defaultdict)
+- `statistics` [(docs)](https://docs.python.org/3/library/statistics.html#statistics.mean)
+- `decimal` [(docs)](https://docs.python.org/3/library/decimal.html#decimal.Decimal)
+- `round` [(docs)](https://docs.python.org/3/library/functions.html#round)
+
+---
+
+# _Exercise 15:_ How unique is a category in a film?
+
+## Template
+
+```python
+def uniqueness_per_film(data, film_field, data_field):
+    """Get the uniqueness a things in a film by films.
+
+    :param data: Starwars dataset
+
+    :param film_field: Name of "relation" field on a film.
+    :type film_field: str
+
+    :param data_field: Name of "data" field in dataset.
+    :type data_field: str 
+
+    :return: Uniqueness or things by films.
+    :rtype: dict[str, list[Thing]]
+    """
+```
+
+**⚠ Types are just to emphasize the exercise!**
+
+---
+
+# _Exercise 15:_ How unique is a category in a film?
+
+## Solution
+
+```python
+def uniqueness_per_film(data, film_field, data_field=None):
+    data_field = data_field or film_field
+    return {
+        film: round(mean(
+            1 / Decimal(len(thing["films"]))
+            for thing in things
+        ), 2)
+        for film, things in by_film(
+            data,
+            film_field,
+            data_field
+        ).items()
+    }
+```
+
+---
+
+# _Exercise 16:_ 𝗙𝗜𝗡𝗔𝗟𝗟𝗬! Which film is the "uniquest"?
+
+## Goals
+
+- Calculate which starwars film is the most unique.
+
+## Batteries
+
+- `uniqueness_per_film` (see previous)
+- `max` [(docs)](https://docs.python.org/3/library/functions.html#max)
+- *Python's Data Model* [(docs)](https://docs.python.org/3/reference/datamodel.html)
+
+---
+
+# _Exercise 16:_ 𝗙𝗜𝗡𝗔𝗟𝗟𝗬! Which film is the "uniquest"?
+
+## Template
+
+```python
+def uniquest_film(data):
+    """Get the uniquest film of them all!
+
+    :param data: Starwars dataset
+
+    :return: The name of the uniquest starwars film.
+    :rtype: str
+    """
+```
+
+---
+
+# _Exercise 16:_ 𝗙𝗜𝗡𝗔𝗟𝗟𝗬! Which film is the "uniquest"?
+
+## Solution
+
+```python
+def uniquest_film(data):
+    inidivdual_uniquenesses = [
+        uniqueness_per_film(data, "vehicles"),
+        uniqueness_per_film(data, "starships"),
+        uniqueness_per_film(data, "planets"),
+        uniqueness_per_film(data, "species"),
+        uniqueness_per_film(data, "characters", "people"),
+    ]
+    res = inidivdual_uniquenesses[0]
+    for uniquenesses in inidivdual_uniquenesses[1:]:
+        for key, value in uniquenesses.items():
+            res[key] += value
+    return max(
+        res.keys(),
+        key=res.__getitem__
     )
 ```

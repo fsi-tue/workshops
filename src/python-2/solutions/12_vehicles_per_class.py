@@ -1,6 +1,6 @@
 """
-Exercise 11: Count vehicles by their class
-==========================================
+Exercise 12: How many are there?
+================================
 
 𝙂𝙤𝙖𝙡𝙨:
 - Count the number of vehicles for all vehicle classes.
