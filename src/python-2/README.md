@@ -28,19 +28,23 @@ follows:
    acquisition and its possible technologies.
 2. Do the segments exercises as follows:
    1. Introduce the exercise as a high level task.
-      > **⏰ This should take at most  5 minutes!**
+      > **⏰ This should take at most 1-2 minutes!**
    2. Introduce the required libraries and read through
       their documentation together with the participants.
-      > **⏰ This should take at most 10 minutes!**
+      > **⏰ This should take at most 5 minutes!**
    3. Show the template and let the participants play with
       the problem a bit.
-      > **⏰ This should take at most 10 minutes!**
+      > **⏰ This should take at most 5 minutes!**
    4. Demonstrate how *you* would have done it; or at least
       how the provided solutions do it.
-      > **⏰ This should take at most 10 minutes!**
+      > **⏰ This should take at most 5 minutes!**
 
-Each exercise should take **at most 35 minutes**! But most
-will be shorter. 😉
+Each exercise should take **at most 15 minutes**! But most
+will be shorter. 😉 This is still a very tight schedule. If
+the need arises you can – and be should – speed through some
+of the easier exercises. Some candidates for this would be
+01, 03, 06, 11, 12, and 14. They are marked with ⏭ in the
+speaker notes below.
 
 How to slides?!
 ---------------
@@ -56,7 +60,7 @@ just use the provided `Makefile`…
 Exercise Notes
 --------------
 
-### _Exercise 01:_ Downloading things...
+### _Exercise 01:_ Downloading things... ⏭
 
 - Introduce the [Star Wars API](https://swapi.dev).
 - Show `urllib` and dive into `urllib.request`
@@ -67,7 +71,7 @@ Exercise Notes
 
 - Show the linked list result style of the API
 
-### _Exercise 03:_ Downloading *complicated* things... (but more generic)
+### _Exercise 03:_ Downloading *complicated* things... (but more generic) ⏭
 
 - Briefly discuss *higher order functions*
 
@@ -86,7 +90,7 @@ Exercise Notes
   (Escape this via `list(...)`!)
 - Show them `del`!
 
-### _Exercise 06:_ Doing things in parallel
+### _Exercise 06:_ Doing things in parallel ⏭
 
 - Briefly discuss the nature of computationally disjointed
   tasks
@@ -129,19 +133,76 @@ Exercise Notes
 ### _Exercise 08:_ Loading the entire data set (but less annoying for swapi.dev)
 
 - Briefly introduce file-I/O via `open`
-- Show `json.load` and `json.dump` (notice the missing `s` at the end of each!)
-
+- Show `json.load` and `json.dump` (notice the missing `s`
+  at the end of each!)
 
 
 ### ⏰ Break
 
 - *The QR Code is a rick roll. Keep that in mind...*
 
-### _Exercise 9:_ Who's the longest?!
+### _Exercise 09:_ Who's the longest?!
+
+- Demonstrate `max` and "`argmax`" (i.e. `max(..., key=...)`)
+
+### _Interlude:_ Generators vs. Lists and the Choice of Comprehensions
+
+- List-Comprehensions materialize the whole result
+- Generator-Comprehensions don't.
+- Generators ≠ Lists!
+- Generators are "special", i.e. they need to be "driven"
+  externally through things like `for`-loops.
+
 ### _Exercise 10:_ Who's in what class?
-### _Exercise 11:_ Who's the longest, but per class?!
-### _Exercise 12:_ How many are there?
+
+- Grouping in linear time via dictionary of lists.
+- During solution touch on `itertools.groupby` and its
+  limitations; it only works properly on sorted iterables!
+
+### _Exercise 11:_ Who's the longest, but per class?! ⏭
+
+- Discuss the possibility of merging the solutions of
+  exercises 09 and 10 and the runtime issues for large
+  data sets this would produce.
+- Instead show the participants the linear time solution.
+- In conjunction show that `collections.defaultdict`
+  strictly speaking doesn't take a type as an argument but
+  rather a 0-ary "constructor function"!
+
+### _Exercise 12:_ How many are there? ⏭
+
+- Show the base "constructor" for `int`, i.e. `int() == 0`.
+- Hit them with the switch-up, i.e. this is so common that
+  there is a default implementation for this:
+  `collections.Counter`.
+- Briefly demonstrate the `Counter.most_common` method.
+
 ### _Exercise 13:_ Group vehicles by films
-### _Exercise 14:_ Group anything by films
+
+- Tell the participants that this exercise is why we moved
+  from a list to dictionary for our data sets (direct access
+  to elements via their ID!).
+- Show the participants the required logic for getting the
+  episode number from the ID: `(ID + 2) % 6 + 1`.
+
+### _Exercise 14:_ Group anything by films ⏭
+
+- This requires minimal changes to the previous exercise!
+- Highlight those changes and default one of the two
+  arguments!
+
 ### _Exercise 15:_ How unique is a category in a film?
-### _Exercise 16:_ 𝗙𝗜𝗡𝗔𝗟𝗟𝗬! Which film is the "uniquest"?
+
+- Discuss a possible measure of uniqueness of an object:
+  `1 / ⟨number of films it appears in⟩`.
+- Show them the `statistics.mean` method and mention that it
+  is a performance tuned version that is type aware.
+- Discuss floating point errors and move their attention to
+  the `decimal` module.
+
+### _Exercise 16:_ **FINALLY!** Which film is the "uniquest"?
+
+- Tell the participants the formula for the uniqueness of a
+  movie: `∑ₖ ⟨mean uniqueness of objects in category 𝑘⟩`.
+- The solution should be:
+  > "Episode 3: The Revenge of the Sith".

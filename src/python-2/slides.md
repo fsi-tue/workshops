@@ -656,6 +656,40 @@ def longest_vehicle(data):
 
 ---
 
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
+# Interlude: Generators vs. Lists and the Choice of Comprehensions
+
+## What?
+
+List-Comprehensions create an entirely new list, i.e. they
+materialize all results **immediately**.
+
+```python
+[ i*i for i in range(1_000_000_000_000) ]
+```
+
+## What??
+
+This can and will lead to problems in big data sets!
+
+
+## What???
+
+Consider the use of Generator(-Comprehension)s for big data
+sets!
+
+```python
+( i*i for i in range(1_000_000_000_000) )
+```
+
+They produce values one after another, considerably
+shrinking the memory footprint.
+
+╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴✄╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴╴
+
+---
+
 # _Exercise 10:_ Who's in what class?
 
 ## Goals
