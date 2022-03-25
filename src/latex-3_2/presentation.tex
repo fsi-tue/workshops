@@ -968,9 +968,17 @@ pandoc [OPTIONS] [FILES]
 
 
 \subsection*{Resourcen}
+\newcommand{\linkitem}[2]{\item \textbf{#1}: \scriptsize\url{#2}\normalsize}
 \begin{frame}{\insertsubsection}
     \begin{itemize}
-        \item \textbf{Material}: \url{\linkMaterial}
+        \linkitem{Material}{\linkMaterial}
+        \linkitem{Font Catalogue}{\fontcalatogue}
+        \linkitem{Font Awesome 5}{\ctanFontAwesome}
+        \linkitem{Packages}{\overleafPackage}
+        \linkitem{Classes}{\overleafClass}
+        \linkitem{Package vs. Class}{\overleafPvC}
+        \linkitem{Github Flavored Markdown Specification}{\gfmspec}
+        \linkitem{Pandoc}{\pandoc} \scriptsize\quad\url{\pandocExamples}\normalsize
     \end{itemize}
 \end{frame}
 
