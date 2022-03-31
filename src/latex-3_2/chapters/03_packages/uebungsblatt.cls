@@ -1,0 +1,207 @@
+%==================================================================
+% 		Preface in its own file
+%==================================================================
+
+%-------------------------------------------------------------------------------
+%       START Class specific
+%-------------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{uebungsblatt}[2022/04/16 LaTeX Package for Assignments]
+
+\LoadClass[a4paper]{scrartcl}
+
+%-------------------------------------------------------------------------------
+%       START Class specific
+%-------------------------------------------------------------------------------
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{fancyhdr}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\RequirePackage{lastpage}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\RequirePackage{pdflscape}
+\RequirePackage{subfigure}
+\RequirePackage{float}
+\RequirePackage{polynom}
+\RequirePackage{hyperref}
+\RequirePackage{tabularx}
+\RequirePackage{forloop}
+\RequirePackage{geometry}
+\RequirePackage{listings}
+\RequirePackage{fancybox}
+\RequirePackage{tikz}
+\RequirePackage{algpseudocode,algorithm,algorithmicx}
+
+%------------------------------------------------------------------------------
+%     START: Our Commands & Environments
+%------------------------------------------------------------------------------
+\RequirePackage{lipsum} % Für Fülltext
+
+%% Commands
+% Slide 7
+\newcommand{\hello}[1][Phi]{Hallo #1, wie geht's so?}
+
+% Slide 9
+%\renewcommand{\square}{^2}
+
+
+%% Environments
+% Slide 12
+\newenvironment{para}[1]{
+	\begin{minipage}{1.5em}
+		\rotatebox{90}{\textsc{#1}}
+	\end{minipage}\begin{minipage}{\linewidth}
+	}{\end{minipage}\smallskip}
+
+% Slide 13
+\newcounter{joke}
+\newenvironment{joke}{
+	\refstepcounter{joke}
+	\noindent
+	\colorbox{gray!50!white}{
+		\textbf{Witz~\thejoke}
+	} \\[.5em]
+}{\medskip}
+
+
+%% Aufgaben
+% Aufgabe 1: Zahlenräume
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbC}{\mathbb{C}}
+
+% Aufgabe 2: Aufgaben-Section mit Punkten
+\newcommand{\aufgabe}[2]{
+	\section*{Aufgabe #1\hfill\small\textcolor{gray}{(#2 Punkte)}}
+}
+
+% Aufgabe 3: Lösungs-Umgebung
+\newenvironment{loesung}[1][Lösung]{
+	\medskip
+	\noindent\textbf{#1}: 
+	
+	\medskip\noindent
+}{\\\smallskip}
+
+
+%% Fonts
+
+% Andere "Schriftarten"
+% https://tug.org/FontCatalogue/
+\RequirePackage[T1]{fontenc} % Notwendig für so ziemlich jede Schriftart
+% \RequirePackage{fontspec}  % Für Xe(La)TeX und Lua(La)TeX
+
+% Dokumentenweit
+% https://tug.org/FontCatalogue/comicneue/
+%\RequirePackage[default]{comicneue}
+
+% Inline
+\newcommand{\comicneue}{\fontfamily{ComicNeue-TLF}\selectfont}
+\DeclareTextFontCommand{\textcn}{\comicneue}
+
+
+%% Aufgaben
+% Aufgabe 4: Neue Monospaced Schriftart
+% https://tug.org/FontCatalogue/firamono/
+\usepackage{FiraMono}
+
+% Aufgabe 5: Awesome Fonts
+% https://www.ctan.org/pkg/fontawesome5
+% https://ftp.fau.de/ctan/fonts/fontawesome5/doc/fontawesome5.pdf
+\usepackage{fontawesome5}
+
+
+%% Package
+% Für den Fall, dass die im Package vergessen wurden
+\providecommand{\NUMBER}{$\backslash$\texttt{NUMBER}}
+\providecommand{\EXERCISES}{1}
+\providecommand{\COURSE}{$\backslash$\texttt{COURSE}}
+\providecommand{\TUTOR}{$\backslash$\texttt{TUTOR}}
+\providecommand{\STUDENTA}{$\backslash$\texttt{STUDENTA}}
+\providecommand{\STUDENTB}{}
+\providecommand{\STUDENTC}{}
+\providecommand{\DEADLINE}{$\backslash$\texttt{DEADLINE}}
+
+%% Class
+\newcommand{\punktetabelle}{
+    \begin{tabularx}{\linewidth}{m{0.2 \linewidth}X}
+        \begin{minipage}{\linewidth}
+            \STUDENTA\\
+            \STUDENTB\\
+            \STUDENTC
+        \end{minipage} & \begin{minipage}{\linewidth}
+            \punkteliste{1}{\EXERCISES}
+        \end{minipage}\\
+\end{tabularx}}
+
+
+\renewcommand{\maketitle}{
+    \punktetabelle
+    \header{Nr. \NUMBER}{\DEADLINE}
+}
+
+
+
+
+%------------------------------------------------------------------------------
+%     END: Our Commands & Environments
+%------------------------------------------------------------------------------
+
+%Definiere Let-Command für algorithmen
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+
+%Größe der Ränder setzen
+\geometry{a4paper,left=3cm, right=3cm, top=3cm, bottom=3cm}
+
+%Kopf- und Fußzeile
+\pagestyle {fancy}
+\fancyhead[L]{Tutor: \TUTOR}
+\fancyhead[C]{\COURSE}
+\fancyhead[R]{\today}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{Seite \thepage /\pageref*{LastPage}}
+
+%Formatierung der Überschrift, hier nichts ändern
+\def\header#1#2{
+	\begin{center}
+		{\Large Übungsblatt #1}\\
+		{(Abgabetermin #2)}
+	\end{center}
+}
+
+%Definition der Punktetabelle, hier nichts ändern
+\newcounter{punktelistectr}
+\newcounter{punkte}
+\newcommand{\punkteliste}[2]{%
+	\setcounter{punkte}{#2}%
+	\addtocounter{punkte}{-#1}%
+	\stepcounter{punkte}%<-- also punkte = m-n+1 = Anzahl Spalten[1]
+	\begin{center}%
+		\begin{tabularx}{\linewidth}[]{@{}*{\thepunkte}{>{\centering\arraybackslash} X|}@{}>{\centering\arraybackslash}X}
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				\thepunktelistectr &
+			}
+			#2 &  $\Sigma$ \\
+			\hline
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				&
+			} &\\
+			\forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+			{%
+				&
+			} &\\
+		\end{tabularx}
+	\end{center}
+}

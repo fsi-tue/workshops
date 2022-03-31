@@ -1,0 +1,133 @@
+% !TeX document-id = {62412bc7-3648-480f-a0eb-fc284834f62a}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+\documentclass[a4paper]{scrartcl}
+
+\usepackage[T1]{fontenc}
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=2cm,top=2cm,bottom=2cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{minted}
+\usemintedstyle{trac}
+
+\title{Cheat Sheet für Font Styles}
+\subtitle{Kompakt und nicht sonderlich ausführlich}
+
+\author{\textsf{Alexander \textbf{Phi} Goetz}}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    
+\begin{figure}[h!]
+    \centering
+    \resizebox{.8\textwidth}{!}{ 
+    \begin{tabular}{l}
+        {\Large$\mathfrak{W}$}{\textbf{i}}{\large\texttt{R}} \quad
+        {$\mathbb{S}$}{\scriptsize\textrm{c}}{\Huge$\mathcal{H}$}{\LARGE\textit{r}}{\footnotesize$\mathbf{e}$}{\small$\mathfrak{I}$}{$\mathcal{B}$}{\Large$\mathbb{E}$}{\textbf{\textit{n}}} \quad
+        {\small\textrm{\textbf{ei}}}{\Large$\mathsf{n}$}{$\mathcal{EN}$} \\
+        {\Large$\mathfrak{E}$}{\textrm{r}}{\large$\mathcal{PR}$}{\tiny E}{\small$\mathfrak{SS}$}{\large e}{$\mathcal{R}$}{\Huge$\mathfrak{b}$}{$\mathcal{R}$}{\scriptsize$\mathbb{I}$}{\large e}{\Large$\mathcal{F}$} \quad
+        {\textbf{\textit{m}}}{\footnotesize \texttt{It}} \quad
+        {\Huge$\mathbb{T}$}{\Large\textbf{\texttt{e}}}{\small$\mathfrak{X}$}
+    \end{tabular}}
+    \caption{Mit Font Styles und Sizes freidrehen}
+    \label{erpresserbrief}
+\end{figure}
+
+\section*{Schriftgrößen}
+Es gibt neun (9) verschiedene Schriftgrößen, die jede Font erfüllen muss.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+        \mintinline{tex}{\tiny}  & \mintinline{tex}{\scriptsize} 
+        & \mintinline{tex}{\footnotesize} & \mintinline{tex}{\small} 
+        & \mintinline{tex}{\normalsize} \\
+        \hline
+        {\tiny Text}             & {\scriptsize Text}
+        & {\footnotesize Text}            & {\small Text}
+        & {\normalsize Text}            \\
+        \hline\hline
+        \mintinline{tex}{\large} & \mintinline{tex}{\Large} 
+        & \mintinline{tex}{\LARGE}        & \mintinline{tex}{\huge} 
+            & \mintinline{tex}{\Huge} \\
+        \hline
+        {\large Text}            & {\Large Text}
+        & {\LARGE Text}                   & {\huge Text}            
+            & {\Huge Text} 
+    \end{tabular}
+    \caption{Font Sizes in Tex}
+\end{table}
+
+\section*{Schriftstile}
+    Einige der folgenden Stile lassen sich auch kombinieren, bspw. \\ 
+    \[ \mintinline{tex}{\textbf{\textit{schief und fett gedruckt}}} 
+    \Rightarrow \text{\textbf{\textit{schief und fett gedruckt}}} \]
+    oder
+    \[ \mintinline{tex}{\mathbb{\uppercase{ChaOs zU OrdnUNg}}} 
+       \Rightarrow \mathbb{\uppercase{ChaOs zU OrdnUNg}} \]
+    
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l|c||l|c}
+        %\hline
+        Mathe Text Style & & Text Style & \\
+        \hline
+        \mintinline{tex}{$\mathcal{A}$}  & ~~$\mathcal{A}$~~   
+        & \mintinline{tex}{\textbf{Text}}  & ~~\textbf{Text}~~  \\
+        \mintinline{tex}{$\mathbb{A}$}   & ~~$\mathbb{A}$~~    
+        & \mintinline{tex}{\textit{Text}}  & ~~\textit{Text}~~  \\
+        \mintinline{tex}{$\mathfrak{A}$} & ~~$\mathfrak{A}$~~  
+        & \mintinline{tex}{\texttt{Text}}  & ~~\texttt{Text}~~  \\
+        \mintinline{tex}{$\mathsf{A}$}   & ~~$\mathsf{A}$~~    
+        & \mintinline{tex}{\textsf{Text}}  & ~~\textsf{Text}~~ \\
+        \mintinline{tex}{$\mathbf{A}$}   & ~~$\mathbf{A}$~~    
+        & \mintinline{tex}{\textrm{Text}}  & ~~\textrm{Text}~~  
+    \end{tabular}
+    \caption{Font Styles für Text im Mathe-Modus, sowie den Text-Modus}
+\end{table}
+
+\pagebreak
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c}
+        \mintinline{tex}{\uppercase{LaTeX}} & \mintinline{tex}{\lowercase{LaTeX}} \\
+        \hline
+        \uppercase{LaTeX}                   & \lowercase{LaTeX}
+    \end{tabular}
+    \caption{Alles groß-/kleinschreiben ist kein Problem}
+\end{table}
+
+\section*{In Anwendung}
+
+\begin{figure}[h!]
+    \centering
+    \resizebox{.8\textwidth}{!}{ 
+        \begin{tabular}{l}
+            {\Large$\mathfrak{W}$}{\textbf{i}}{\large\texttt{R}} \quad
+            {$\mathbb{S}$}{\scriptsize\textrm{c}}{\Huge$\mathcal{H}$}{\LARGE\textit{r}}{\footnotesize$\mathbf{e}$}{\small$\mathfrak{I}$}{$\mathcal{B}$}{\Large$\mathbb{E}$}{\textbf{\textit{n}}} \quad
+            {\small\textrm{\textbf{ei}}}{\Large$\mathsf{n}$}{$\mathcal{EN}$} \\
+            {\Large$\mathfrak{E}$}{\textrm{r}}{\large$\mathcal{PR}$}{\tiny E}{\small$\mathfrak{SS}$}{\large e}{$\mathcal{R}$}{\Huge$\mathfrak{b}$}{$\mathcal{R}$}{\scriptsize$\mathbb{I}$}{\large e}{\Large$\mathcal{F}$} \quad
+            {\textbf{\textit{m}}}{\footnotesize \texttt{It}} \quad
+            {\Huge$\mathbb{T}$}{\Large\textbf{\texttt{e}}}{\small$\mathfrak{X}$}
+    \end{tabular}}
+
+    \vspace{1em}
+    Abbildung \ref{erpresserbrief}: Mit Font Styles und Sizes freidrehen
+\end{figure}
+
+\begin{listing}[h!]
+    \begin{minted}[linenos,breaklines,breakanywhere]{tex}
+{\Large$\mathfrak{W}$}{\textbf{i}}{\large\texttt{R}} \quad
+{$\mathbb{S}$}{\scriptsize\textrm{c}}{\Huge$\mathcal{H}$}{\LARGE\textit{r}}{\footnotesize$\mathbf{e}$}{\small$\mathfrak{I}$}{$\mathcal{B}$}{\Large$\mathbb{E}$}{\textbf{\textit{n}}} \quad
+{\small\textrm{\textbf{ei}}}{\Large$\mathsf{n}$}{$\mathcal{EN}$}
+{\Large$\mathfrak{E}$}{\textrm{r}}{\large$\mathcal{PR}$}{\tiny E}{\small$\mathfrak{SS}$}{\large e}{$\mathcal{R}$}{\Huge$\mathfrak{b}$}{$\mathcal{R}$}{\scriptsize$\mathbb{I}$}{\large e}{\Large$\mathcal{F}$} \quad
+{\textbf{\textit{m}}}{\footnotesize \texttt{It}} \quad
+{\Huge$\mathbb{T}$}{\Large\textbf{\texttt{e}}}{\small$\mathfrak{X}$}
+    \end{minted}
+    \caption{Der durchaus abgefuckte Code zu Abbildung \ref{erpresserbrief}}
+\end{listing}
+\end{document}
