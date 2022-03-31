@@ -16,5 +16,7 @@
 
 ## 2022
 
-- [01-latex.pdf](2022/01-latex.pdf)
-- [02-python-basics.pdf](2022/02-python-basics.pdf)
+- [03-python-basics.pdf](2022/03-python-basics.pdf)
+- [03-python-first-project.html](2022/03-python-first-project.html)
+- [04-latex-basics.pdf](2022/04-latex-basics.pdf)
+- [04-latex-further-topics.pdf](2022/04-latex-further-topics.pdf)
