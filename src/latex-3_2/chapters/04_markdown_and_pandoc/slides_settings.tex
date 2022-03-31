@@ -1,0 +1,65 @@
+% !TEX root = main.tex
+
+\usepackage{adjustbox}
+
+% Fonts
+\usepackage{fontspec}
+\usepackage[mathletters]{ucs}   % use φ's intext
+\usepackage[ngerman]{babel}
+
+\usepackage[sfdefault,lining]{FiraSans}     % Sans font
+%\usepackage{newtxsf}
+\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+\setmonofont{Fira Code}[Scale=0.9,Contextuals=Alternate]  % Code Font
+\makeatletter
+\renewcommand*\verbatim@nolig@list{}
+\makeatother
+
+% Code
+\usepackage{xcolor}
+\usepackage{minted}
+\usemintedstyle{trac}
+
+%Math
+\usepackage{amsmath,amssymb,tabularx}
+\usepackage{ stmaryrd }
+
+%Figures
+\usepackage{graphicx,tikz,float}
+\usetikzlibrary{shapes,trees}
+
+\usepackage{hyperref}
+\usepackage{pdfpages}
+
+%Algorithms
+\usepackage[ruled,linesnumbered]{algorithm2e}
+
+% Colors
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegreen-task}{rgb}{0,0.3,0}
+\definecolor{codepurple-task}{rgb}{0.38,0,0.62}
+\definecolor{backcolour-task}{rgb}{0.95,0.95,0.95}
+
+\definecolor{lightolive}{RGB}{216,202,157}
+\definecolor{eigengrau}{RGB}{22,22,29}
+
+% Math notation
+\newcommand{\bigo}{\mathcal{O}}
+%\newcommand{\qed}{\begin{flushright}$\square$\end{flushright}}
+\newcommand{\kstn}{\qed}
+
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\bfE}{\mathbf{E}}
+\newcommand{\bfP}{\mathbf{P}}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
