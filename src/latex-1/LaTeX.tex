@@ -14,7 +14,6 @@
 %----------------------------------------------------------------------------------------
 %     PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
-% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 \documentclass{beamer}
 \usepackage[ngerman]{babel}
 
@@ -136,22 +135,22 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod t
 \begin{frame}
 \frametitle{Was ist Latex?}
     Ein Text-Editor wie Word?\pause $\Rightarrow$ Nein, besser (und schlechter)..
-     
+
 \end{frame}
 
 
 \begin{frame}
      \frametitle{Was ist Latex?}
      \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-          
+
           \column{.2\textwidth} % Left column and width
      \includegraphics[width=\textwidth]{pictures/texicon.png}
           \column{.1\textwidth} % Left column and width
      \Huge{$ \Rightarrow $}
-          
+
           \column{.2\textwidth} % Right column and width
      \includegraphics[width=\textwidth]{pictures/pdficon.png}
-          
+
      \end{columns}
 \begin{itemize}[<+->]
      \item Code wird in eine *.tex Datei geschrieben.
@@ -177,7 +176,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod t
      \begin{itemize}[<+->]
           \item \textbf{Overleaf}
           \item \textbf{TexStudio}
-          \item VSCode 
+          \item VSCode
           \item ...
      \end{itemize}
 \end{frame}
@@ -215,7 +214,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod t
 	\frametitle{Compiler}
 	Windows\vspace{2mm}
 	\centering
-	
+
 	\qrcode{https://miktex.org/download}\\
 	\url{https://miktex.org/download}\\
 	\vspace{5mm}
@@ -224,7 +223,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod t
 	Linux
 	\begin{minted}{bash}
 	sudo apt install texlive-latex-extra # 0.5GB oder
-	sudo apt install texlive-full        # 5.9GB
+	sudo apt install texlive-full        # 6.4GB
 	\end{minted}
 \end{frame}
 
@@ -232,7 +231,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod t
 	\frametitle{TexStudio}
 	Windows\vspace{2mm}
 	\centering
-	
+
 	\qrcode{https://www.texstudio.org/}\\
 	\url{https://www.texstudio.org/}\\
 	\vspace{5mm}
@@ -253,11 +252,11 @@ sudo apt install texstudio
 
 
 \begin{frame}[fragile]
-  
+
 \frametitle{Basis Gerüst}
 \begin{columns}
 	\column{.5\textwidth}\begin{block}{Gerüst}
-		
+
 \begin{minted}{latex}
 \documentclass[12pt]{scrartcl}
 \usepackage[ngerman]{babel}
@@ -297,7 +296,7 @@ sudo apt install texstudio
           \begin{itemize}[<+->]
                \item article
                \item letter
-               \item scrartcl 
+               \item scrartcl
                \item exam
           \end{itemize}\pause
      \textbf{Wichtigste Imports}
@@ -307,7 +306,7 @@ sudo apt install texstudio
           \item graphicx
           \item minted
      \end{itemize}
-          
+
      \end{columns}
 \end{frame}
 
@@ -320,12 +319,12 @@ sudo apt install texstudio
      \begin{minted}{latex}
 (...)
 \usepackage{fancyhdr}
-\pagestyle{fancy} 
-\fancyhf{} 
-\fancyhead[L]{Titel} 
-\fancyhead[C]{}           
-\fancyhead[R]{Name}           
-\fancyfoot[C]{\thepage}  
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Titel}
+\fancyhead[C]{}
+\fancyhead[R]{Name}
+\fancyfoot[C]{\thepage}
 \begin{document}
     (...)
 \end{document}
@@ -346,10 +345,10 @@ sudo apt install texstudio
 	\frametitle{Header und Footer}
 	\begin{columns}
 		\column{.39\textwidth}
-		
+
 		\begin{block}{}
 			\begin{minted}{latex}
-(...)  
+(...)
 \begin{document}
 \author{Jules Kreuer}
 \title{Übungsblatt 0}
@@ -361,13 +360,13 @@ sudo apt install texstudio
 		\end{block}
 		\column{0.5\textwidth}
 		\begin{figure}
-			
+
 			\begin{example}
 				\includegraphics[width=\linewidth,trim= 4cm 23cm 4cm 1cm,]{pictures/uebung00.pdf}
-				
+
 		\end{example}\end{figure}
 	\end{columns}
-	
+
 \end{frame}
 
 %------------------------------------------------
@@ -382,18 +381,18 @@ sudo apt install texstudio
 \subsection{SSektion}
 \subsubsection{SSSektion}
 \section*{Sektion}
-          \end{minted}          
+          \end{minted}
      \end{block}
-     
+
 \begin{block}{Aufzählung}<2->
      \begin{minted}{latex}
 \begin{enumerate}
      \item Bla bla bla
      \item Mr Freeman
-     \item here 
+     \item here
 \end{enumerate}
      \end{minted}
-     
+
 \end{block}
 \column{.45\textwidth}
 \begin{example}
@@ -406,11 +405,11 @@ sudo apt install texstudio
 
 \begin{frame}[fragile]
      \frametitle{Euch gefällt die Nummerierung nicht?}
-     
+
      \begin{columns}
      \column{0.45\textwidth}
      \begin{block}{andere Nummerierungen}
-               
+
           \begin{minted}{latex}
 \usepackage{enumerate}
 \usepackage[shortlabels]
@@ -418,7 +417,7 @@ sudo apt install texstudio
 (...)
 \begin{enumerate}[a)]
     \item
-     \item 
+     \item
      \item[5]
 \end{enumerate}
           \end{minted}
@@ -459,7 +458,7 @@ sudo apt install texstudio
 \caption{Balu}
 \end{figure}
      \end{minted}
-     
+
 \end{block}
 \begin{example}\begin{figure}
      \centering
@@ -473,19 +472,19 @@ sudo apt install texstudio
 
 \begin{frame}[fragile]
 \frametitle{Referenzen}
-Label und Referenzen die anklickbar sind. 
+Label und Referenzen die anklickbar sind.
 \begin{block}{}<1->
 		\begin{minted}{latex}
 Wichtige Aussage \label{key} \\
 Referenz \ref{key}
 		\end{minted}
-	\end{block}	
+	\end{block}
 \begin{example}\begin{figure}
 	\includegraphics[width=8cm]{pictures/ref_example.png}
 	\caption{Beispiel einer Referenz.}
 \end{figure}
 \end{example}
-		
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -518,7 +517,7 @@ Referenz \ref{key}
     \end{tabular}
 \caption{Schuldentablle}
 \end{table}
-               
+
           \end{minted}
      \end{block}
 \end{frame}
@@ -553,7 +552,7 @@ in einer neuen Zeile, damit unsere tolle Formel auch auffällt
 \begin{block}{}
 \begin{minted}{latex}
  $\sum_{1}^{100}i=5050$
-\end{minted} 
+\end{minted}
 \end{block}
 \pause
 \begin{example}
@@ -610,7 +609,7 @@ $\sum_{1}^{100}i=5050$
 	\begin{block}{}
 	\begin{minted}{latex}
 \begin{align*}
-  \Delta  &= \lim\limits_{x \rightarrow 5} \lambda 
+  \Delta  &= \lim\limits_{x \rightarrow 5} \lambda
 	         + \frac{1}{5-x}\\
   \nabla   &= \sqrt[3]{3\sigma}
 \end{align*}
@@ -660,16 +659,16 @@ Meinst du vielleicht?
 		$\leq \neq \geq$ & \mintinline{latex}{\leq \neq \geq}\\
 		$\lim\limits_{x \rightarrow 5}$ & \mintinline{latex}{\lim\limits_{x \rightarrow 5}} \\
 		$x_\text{text}$ &  \mintinline{latex}{x_\text{text}}}
-		
-		
+
+
 	\end{tabular}
-	
-	
+
+
 	\pause
 	\begin{alertblock}{Aufgabe}
 		\[\int_{a}^{b}\left( \sum^b_{\omega = 1}f(\omega)+g(x)\right)dx=\int_{a}^{b}\sum^b_{\omega = 1}f(\omega)dx+\int_{a}^{b}g(x)dx\]
 	\end{alertblock}
-	
+
 \end{frame}
 
 
@@ -678,7 +677,7 @@ Meinst du vielleicht?
 \begin{itemize}[<+->]
 \item yWorks yed (\url{https://www.yworks.com/products/yed-live})
 \begin{itemize}
-\item[+] Einfach zu Bedienen 
+\item[+] Einfach zu Bedienen
 \item[+] Sehr mächtig
 \item[-] man bekommt nur SVG oder anderes Bildformat
 \end{itemize}
@@ -771,4 +770,4 @@ for i in range(0,5):
 	\url{https://juleskreuer.eu/projekte/latex/}
 \end{frame}
 
-\end{document} 
+\end{document}
