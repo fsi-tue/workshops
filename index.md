@@ -13,6 +13,7 @@
 ## 2021
 
 - [01-latex.pdf](2021/01-latex.pdf)
+- [bash/Bash-Workshop.slides.html](2021/bash/Bash-Workshop.slides.html)
 
 ## 2022
 
@@ -20,3 +21,7 @@
 - [03-python-first-project.html](2022/03-python-first-project.html)
 - [04-latex-basics.pdf](2022/04-latex-basics.pdf)
 - [04-latex-further-topics.pdf](2022/04-latex-further-topics.pdf)
+- [05-python-basics.pdf](2022/05-python-basics.pdf)
+- [06-latex-basics.pdf](2022/06-latex-basics.pdf)
+- [bash/01-bash-advanced.slides.html](2022/bash/01-bash-advanced.slides.html)
+- [bash/01-bash-basics.slides.html](2022/bash/01-bash-basics.slides.html)
