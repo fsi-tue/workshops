@@ -6,14 +6,6 @@
 ###########################################
 from random import randint
 
-# Use
-from colorama import init
-from termcolor import colored
-init() 
-
-greenCube  = colored(' ', 'green', 'on_green')
-yellowCube = colored(' ', 'yellow', 'on_yellow')
-whiteCube  = colored(' ', 'white', 'on_white')
 
 # Or use this:
 greenCube  = "🟩"
