@@ -430,9 +430,9 @@ for element in iterable:
 \begin{example}<2->
         \begin{minted}{python}
 for i in range(5):
-  print(e) # 0, 1, 2, 3, 4
+  print(i) # 0, 1, 2, 3, 4
 for c in "Hello World":
-  print(e) # Every char
+  print(c) # Every char
 for k in {"k": "v", "k2": "v2"}:
   print(k) # Only the keys
 for k, v in {"k": "v", "k2": "v2"}.items():
@@ -546,7 +546,7 @@ See post from `Russia Must Remove Putin': \url{https://stackoverflow.com/a/46939
     \begin{minted}{python}
 def is_even(i):
   """
-  Computes if an integer is even.
+  Is integer is even?
   Input:
       i: int
   Returns:
@@ -570,7 +570,8 @@ def is_even(i):          <- keyword, name(parameters)
     i: int                |> DocString
   Returns:                |
     even: bool, result.   |
-  """                    _|
+                         _|
+  """
   even = (1 % 2) == 0     <- Computation
   return even             <- Return (Optional)
     \end{minted}
@@ -700,6 +701,7 @@ equiv to: [pow(x,2) for x in l]
     - We don't want to handle that...\\
     \begin{example}
         \begin{minted}{python}
+# for windows: r"/path/file.txt"
 with open("path/file.txt", "r") as f:
   line = f.readline()
   content = f.read() # reads everything
@@ -900,7 +902,6 @@ Reversed:&\mintinline{python}{__reversed__(self)}\\
 ~~~ Example: \mintinline{python}{V1 + V1 -> Vector(2,4,6)}\\
 5: Extend code so that \mintinline{python}{V1.add(Vector(2,3,4))} will mutate V1.\\
 ~~~ We do not want to see duplicated code.\\
-~~~ Remember: use \mintinline{python}{deepcopy} to clone an object.
 \end{exampleblock}
 
 \end{frame}
@@ -946,6 +947,16 @@ except Exception as e:
   print("Other error:" , e)
 \end{minted}
     \end{example}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{07-objects.py}
+\begin{exampleblock}{Exercise}
+\textbf{Goal}:\\
+ Add a check to prohibit negative numbers.\\
+ Throw an exception if a negative number is used.
+\end{exampleblock}
 
 \end{frame}
 

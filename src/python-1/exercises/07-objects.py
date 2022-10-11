@@ -20,8 +20,9 @@
 # 5: Refactor/Extend code so that V1.add(Vector(2,3,4)) will mutate V1.
 #    We do not want to see duplicated code.
 
-class Vector:
-    pass
+# 6: Exceptions: Add a check to prohibit negative numbers. Throw an exception if a negative number is used.
+
+class Vector():
 
 # Test the cases:
 #V1 = Vector(1,2,3)
