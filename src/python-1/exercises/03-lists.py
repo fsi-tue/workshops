@@ -25,14 +25,15 @@ l2 = [0,1,2,3,4,5,6,7,8,9]
 l3 = [9,8,7,6,5,4,3,2,1,0]
 
 
-# E4 
+# E4
 # Print the element 4 to 8 in reverse order
 l4 = [0,1,2,3,4,5,6,7,8,9]
 
 
 # E5
-# Add the number 5 to l5.
+# Add the number 5 to l4.
 
 
 # E6
 # Add the content of l5 to l6
+l6 = ["A", "B", "C"]
