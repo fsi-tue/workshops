@@ -29,18 +29,15 @@ def loadWords(path):
 
 def allowedGuess(allWords, guess):
     """
-    Check if guess is allowed (length = 5 and in wordlist) 
+    Check if guess is allowed (length = 5 and in wordlist)
     Input:
         allWords: List of str
         guess: str
     Returns:
         Boolean
     """
-    if not len(guess) == 5:
-        return False
-    if not guess in allWords:
-        return False
-    return True
+    return len(guess) == 5 and guess in allWords:
+
 
 def matchGuess(trueWord, guess):
     """
@@ -49,7 +46,7 @@ def matchGuess(trueWord, guess):
     Yellow Cube for correct letter at incorrect position.
     White Cube otherwise.
 
-    Input: 
+    Input:
         trueWord: str, the word to guess
         guess: str, the actual guess
     Returns:
@@ -75,13 +72,12 @@ def main():
 
     numberOfGuesses = 0
     print(f"\t {0}: {whiteCube*5}")
-    while numberOfGuesses < 6:
+    for numberOfGuesses in range(6):
         # Aks for guess
         guess = input("Your guess: ")
         guess = guess.strip().lower()
         # If valid guess
         if allowedGuess(allWords, guess):
-            numberOfGuesses += 1
             match = matchGuess(trueWord, guess)
             print(f"\t {numberOfGuesses}: {match}")
             if guess == trueWord:
